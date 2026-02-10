@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Rahim</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link   href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@500,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/navbar.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="assets/css/projects.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+    <div class="cursor-follower"></div>
+    <div class="theme-transition-overlay"></div>
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+        <i class="fa-solid fa-moon"></i>
+    </button>
+    <!-- Navbar -->
+    <nav class="navbar-container">
+        <div class="navbar">
+            <a href="index.html" class="nav-logo">Rahim.</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="skills.html">Skills</a></li>
+                <li><a href="projects.html" class="active">Projects</a></li>
+            </ul>
+            <a href="contact.html" class="nav-btn">Contact</a>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+    <div class="mobile-nav">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="skills.html">Skills</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contact.html" class="mobile-nav-btn">Contact</a></li>
+        </ul>
+    </div>
+    <main class="projects-page">
+        <!-- Projects Header -->
+        <section class="projects-header-section">
+            <div class="projects-header-container">
+                <div class="header-top">
+                    <h1 class="page-title">Projects</h1>
+                    <p class="header-desc">
+                        Every project we deliver is a reflection of our commitment to quality, designed to inspire and
+                        drive success.
+                    </p>
+                </div>
+                <div class="projects-filter-bar">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="custom">Custom</button>
+                    <button class="filter-btn" data-filter="wordpress">Wordpress</button>
+                    <button class="filter-btn" data-filter="shopify">Shopify</button>
+                </div>
+            </div>
+            <div class="divider-line"></div>
+        </section>
+        <!-- Project Grid -->
+        <section class="projects-grid-section">
+            <div class="projects-grid-container">
+                <div class="project-item" data-category="custom">
+                    <div class="project-thumb">
+                        <img src="assets/images/home-page/clothing.webp" alt="Radiant Skincare" class="thumb-img">
+                        <a href="https://github.com/Rahimdal/Rahimdal.Clothify-ecommerce.github.io" class="visit-btn"
+                            target="_blank" rel="noopener noreferrer">Visit Website</a>
+                        <div class="project-overlay-link"></div>
+                    </div>
+                    <div class="project-details">
+                        <h3 class="item-title">Clotify - Clothing Store</h3>
+                        <p class="item-desc">Clotify is a modern clothing store web application built using React (Vite)
+                            for high performance and fast loading. The project features fully functional components,
+                            smooth user interactions, and a clean UI. Styling is done with Tailwind CSS, ensuring a
+                            fully responsive design across desktop, tablet, and mobile devices.</p>
+                        <div class="item-tags">
+                            <span class="p-tag">Custom</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-item" data-category="custom">
+                    <div class="project-thumb">
+                        <img src="assets/images/projects/Mental-Health.jpg" alt="Apex clothing Co. rebrand"
+                            class="thumb-img">
+                        <a href="https://rahimdal.github.io/Mental-Health/" class="visit-btn" target="_blank"
+                            rel="noopener noreferrer">Visit Website</a>
+                        <div class="project-overlay-link"></div>
+                    </div>
+                    <div class="project-details">
+                        <h3 class="item-title">Mental Health Website</h3>
+                        <p class="item-desc">A custom-built single-page Mental Health website developed using HTML, CSS,
+                            and JavaScript. The project features a clean, calming design with smooth interactions and a
+                            fully responsive layout, ensuring an optimal user experience across all devices. Built from
+                            scratch with a focus on accessibility, performance, and modern UI principles.</p>
+                        <div class="item-tags">
+                            <span class="p-tag">Custom</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-item" data-category="wordpress">
+                    <div class="project-thumb">
+                        <img src="assets/images/projects/Clothing.jpg" alt="Vero app development" class="thumb-img">
+                        <a href="https://www.social.ct.ws/" class="visit-btn" target="_blank"
+                            rel="noopener noreferrer">Visit Website</a>
+                        <div class="project-overlay-link"></div>
+                    </div>
+                    <div class="project-details">
+                        <h3 class="item-title">Clothing Store Website</h3>
+                        <p class="item-desc">A fully functional clothing store website developed using WordPress and
+                            WooCommerce. The site is designed to look and feel like a real, premium clothing brand, with
+                            a clean and modern layout. It is fully responsive, delivering a smooth shopping experience
+                            across all devices, and includes complete e-commerce functionality such as product listings,
+                            cart, checkout, and payment integration—all working seamlessly.
+                        </p>
+                        <div class="item-tags">
+                            <span class="p-tag">Wordpress</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-item" data-category="custom">
+                    <div class="project-thumb">
+                        <img src="assets/images/projects/headphone.jpg" alt="Stoyo branding" class="thumb-img">
+                        <a href="#" class="visit-btn" target="_blank" rel="noopener noreferrer">Visit Website</a>
+                        <div class="project-overlay-link"></div>
+                    </div>
+                    <div class="project-details">
+                        <h3 class="item-title">Headphone Website</h3>
+                        <p class="item-desc">A modern, custom-designed Headphone website built using HTML and CSS,
+                            enhanced with GSAP and other smooth animations. The project focuses on clean visuals,
+                            interactive motion effects, and a contemporary UI to create a premium, modern user
+                            experience. Carefully crafted animations bring the design to life while maintaining
+                            performance and responsiveness across all devices.</p>
+                        <div class="item-tags">
+                            <span class="p-tag">Custom</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer Section -->
+    <footer class="footer-section" id="contact">
+        <div class="footer-container">
+            <div class="footer-icon-wrapper">
+                <i class="fa-regular fa-handshake footer-icon"></i>
+            </div>
+            <h2 class="footer-heading">Tell me about your next project</h2>
+            <div class="footer-buttons">
+                <a href="mailto:rahimdal32@gmail.com" class="footer-btn btn-black">
+                    <i class="fa-solid fa-envelope"></i> rahimdal32@gmail.com
+                </a>
+                <a href="https://wa.me/918320821391" class="footer-btn btn-white">
+                    <i class="fa-brands fa-whatsapp"></i> 8320821391
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="copyright">© 2026 All rights reserved.</span>
+            <div class="footer-socials">
+                <a href="https://www.linkedin.com/in/rahim-dal" class="social-link">LinkedIn</a>
+                <span class="social-divider">/</span>
+                <a href="https://github.com/Rahimdal" class="social-link">GitHub</a>
+            </div>
+        </div>
+    </footer>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="assets/js/smooth-scroll.js"></script>
+    <script src="assets/js/navbar.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/projects.js"></script>
+</body>
+</html>

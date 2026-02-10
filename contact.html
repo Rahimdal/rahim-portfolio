@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Rahim</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap"
+        rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@500,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/navbar.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="assets/css/contact.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+
+<body>
+    <div class="cursor-follower"></div>
+    <div class="theme-transition-overlay"></div>
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+        <i class="fa-solid fa-moon"></i>
+    </button>
+    <!-- Navbar -->
+    <nav class="navbar-container">
+        <div class="navbar">
+            <a href="index.html" class="nav-logo">Rahim.</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="skills.html">Skills</a></li>
+                <li><a href="projects.html">Projects</a></li>
+            </ul>
+            <a href="contact.html" class="nav-btn active">Contact</a>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+    <div class="mobile-nav">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="skills.html">Skills</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contact.html" class="mobile-nav-btn">Contact</a></li>
+        </ul>
+    </div>
+    <!-- Main Content -->
+    <main class="contact-page">
+        <div class="contact-wrapper">
+            <div class="contact-grid">
+                <div class="contact-left">
+                    <span class="contact-overline">Get In Touch</span>
+                    <h1 class="contact-headline">Let’s build <br> something <span class="highlight">great.</span></h1>
+                    <p class="contact-desc">
+                        I’m currently available for freelance projects and open to full-time opportunities.
+                        If you have a project that needs some creative injection, I'd love to hear about it.
+                    </p>
+                    <div class="direct-links">
+                        <a href="mailto:rahimdal32@gmail.com" class="contact-link-item">
+                            <div class="link-icon-circle">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div class="link-content">
+                                <span class="link-label">Mail me at</span>
+                                <span class="link-value">rahimdal32@gmail.com</span>
+                            </div>
+                        </a>
+                        <a href="https://wa.me/918320821391" class="contact-link-item">
+                            <div class="link-icon-circle">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div class="link-content">
+                                <span class="link-label">Call me at</span>
+                                <span class="link-value">+91 83208 21391</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="social-row">
+                        <a href="https://www.linkedin.com/in/rahim-dal" class="social-pill">
+                            <i class="fa-brands fa-linkedin-in"></i> LinkedIn
+                        </a>
+                        <a href="https://github.com/Rahimdal" class="social-pill">
+                            <i class="fa-brands fa-github"></i> GitHub
+                        </a>
+                        <a href="#" class="social-pill">
+                            <i class="fa-brands fa-twitter"></i> Twitter
+                        </a>
+                        <a href="https://www.instagram.com/rahim_dal.1?igsh=MTR4ZHNwbTdsdzg4Yw==" class="social-pill">
+                            <i class="fa-brands fa-instagram"></i> Instagram
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-right">
+                    <div class="form-wrapper">
+                        <form id="contactForm">
+                            <input type="hidden" name="_subject" value="New Query from Portfolio Website!">
+                            <input type="hidden" name="_template" value="table">
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_next" value="https://rahimdal.github.io/portfolio/contact.html">
+                            <div class="form-group-row">
+                                <div class="form-field">
+                                    <label for="name" class="field-label">Your Name</label>
+                                    <input type="text" id="name" name="name" class="form-input" placeholder="John Doe"
+                                        required>
+                                </div>
+                                <div class="form-field">
+                                    <label for="email" class="field-label">Your Email</label>
+                                    <input type="email" id="email" name="email" class="form-input"
+                                        placeholder="john@example.com" required>
+                                </div>
+                            </div>
+                            <div class="form-field">
+                                <label for="subject" class="field-label">Subject</label>
+                                <input type="text" id="subject" name="subject" class="form-input"
+                                    placeholder="Project Inquiry / Just saying hi" required>
+                            </div>
+                            <div class="form-field">
+                                <label for="message" class="field-label">Message</label>
+                                <textarea id="message" name="message" class="form-textarea"
+                                    placeholder="Tell me about your project..." required></textarea>
+                            </div>
+                            <button type="submit" class="send-btn">
+                                <span>Send Message</span>
+                                <i class="fa-solid fa-arrow-right btn-arrow"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer-section">
+        <div class="footer-container">
+            <div class="footer-icon-wrapper">
+                <i class="fa-regular fa-handshake footer-icon"></i>
+            </div>
+            <h2 class="footer-heading">Thanks for visiting!</h2>
+            <div class="footer-buttons">
+                <a href="index.html" class="footer-btn btn-black">
+                    Back to Home
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span class="copyright">© 2024 All rights reserved.</span>
+            <div class="footer-socials">
+                <a href="https://www.linkedin.com/in/rahim-dal" class="social-link">LinkedIn</a>
+                <span class="social-divider">/</span>
+                <a href="https://github.com/Rahimdal" class="social-link">GitHub</a>
+            </div>
+        </div>
+    </footer>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="assets/js/smooth-scroll.js"></script>
+    <script src="assets/js/navbar.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/contact.js"></script>
+    <script>
+    </script>
+</body>
+
+</html>

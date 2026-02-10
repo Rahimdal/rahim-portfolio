@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills - Rahim</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@500,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/navbar.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="assets/css/skills.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+    <div class="cursor-follower"></div>
+    <div class="theme-transition-overlay"></div>
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+        <i class="fa-solid fa-moon"></i>
+    </button>
+    <nav class="navbar-container">
+        <div class="navbar">
+            <a href="index.html" class="nav-logo">Rahim.</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="skills.html" class="active">Skills</a></li>
+                <li><a href="projects.html">Projects</a></li>
+            </ul>
+            <a href="contact.html" class="nav-btn">Contact</a>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+    <div class="mobile-nav">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="skills.html">Skills</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contact.html" class="mobile-nav-btn">Contact</a></li>
+        </ul>
+    </div>
+    <main class="skills-page">
+        <!-- Skills Hero -->
+        <section class="skills-hero">
+            <div class="skills-hero-container">
+                <h1 class="skills-title">
+                    <span class="skills-title-line">My Technical</span>
+                    <span class="skills-title-line italic-text">Arsenal</span>
+                </h1>
+                <p class="skills-lead">
+                    A curated list of tools and technologies I use to build digital products. Hover over a skill to see
+                    more details.
+                </p>
+            </div>
+        </section>
+        <!-- Interactive Skills Section -->
+        <section class="skills-interaction-section">
+            <div class="skills-container">
+                <div class="skills-list-wrapper">
+                    <ul class="skills-list">
+                        <li class="skill-item active" data-skill="seo">SEO</li>
+                        <li class="skill-item" data-skill="wordpress">WORDPRESS</li>
+                        <li class="skill-item" data-skill="shopify">SHOPIFY</li>
+                        <li class="skill-item" data-skill="html">HTML</li>
+                        <li class="skill-item" data-skill="css">CSS</li>
+                        <li class="skill-item" data-skill="javascript">JAVASCRIPT</li>
+                        <li class="skill-item" data-skill="react">React.Js</li>
+                        <li class="skill-item" data-skill="gsap">GSAP LIBRARY</li>
+                        <li class="skill-item" data-skill="bootstrap">BOOTSTRAP</li>
+                        <li class="skill-item" data-skill="php">PHP</li>
+                        <li class="skill-item" data-skill="figma">Figma</li>
+                        <li class="skill-item" data-skill="vibe">Vibe coding</li>
+                    </ul>
+                </div>
+                <div class="skill-display-wrapper">
+                    <div class="skill-card" id="skill-card">
+                        <div class="skill-header">
+                            <h2 class="skill-name">SEO</h2>
+                            <div class="skill-icon">
+                                <i class="fa-solid fa-search"></i>
+                            </div>
+                        </div>
+                        <div class="skill-body">
+                            <ul class="skill-details-list">
+                                <li><i class="fa-solid fa-check"></i> Keyword research</li>
+                                <li><i class="fa-solid fa-check"></i> Site audits</li>
+                                <li><i class="fa-solid fa-check"></i> Link building strategies</li>
+                                <li><i class="fa-solid fa-check"></i> SEO content optimization</li>
+                                <li><i class="fa-solid fa-check"></i> Analytics & tracking</li>
+                                <li><i class="fa-solid fa-check"></i> Site speed boost</li>
+                                <li><i class="fa-solid fa-check"></i> Content SEO</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer Section -->
+    <footer class="footer-section" id="contact">
+        <div class="footer-container">
+            <div class="footer-icon-wrapper">
+                <i class="fa-regular fa-handshake footer-icon"></i>
+            </div>
+            <h2 class="footer-heading">Tell me about your next project</h2>
+            <div class="footer-buttons">
+                <a href="mailto:rahimdal32@gmail.com" class="footer-btn btn-black">
+                    <i class="fa-solid fa-envelope"></i> rahimdal32@gmail.com
+                </a>
+                <a href="https://wa.me/918320821391" class="footer-btn btn-white">
+                    <i class="fa-brands fa-whatsapp"></i> 8320821391
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span class="copyright">© 2024 All rights reserved.</span>
+            <div class="footer-socials">
+                <a href="https://www.linkedin.com/in/rahim-dal" class="social-link">LinkedIn</a>
+                <span class="social-divider">/</span>
+                <a href="https://github.com/Rahimdal" class="social-link">GitHub</a>
+            </div>
+        </div>
+    </footer>
+    <!-- Scripts -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="assets/js/smooth-scroll.js"></script>
+    <script src="assets/js/navbar.js"></script>
+    <script src="assets/js/script.js"></script>
+     <script src="assets/js/skills.js"></script>
+</body>
+</html>

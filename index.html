@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Rahim</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/navbar.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+
+<body>
+    <div class="cursor-follower"></div>
+    <div class="theme-transition-overlay"></div>
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+        <i class="fa-solid fa-moon"></i>
+    </button>
+    <nav class="navbar-container">
+        <div class="navbar">
+            <a href="index.html" class="nav-logo">Rahim.</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="skills.html">Skills</a></li>
+                <li><a href="projects.html">Projects</a></li>
+            </ul>
+            <a href="contact.html" class="nav-btn">Contact</a>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+    <div class="mobile-nav">
+        <ul class="mobile-nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="skills.html">Skills</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contact.html" class="mobile-nav-btn">Contact</a></li>
+        </ul>
+    </div>
+    <header class="hero-section" id="home">
+        <div class="hero-container">
+            <h1 class="hero-title">
+                Hi, I’m Rahim
+            </h1>
+            <div class="hero-subtitle-line">
+                <span class="text-grey">I’m a</span>
+                <span class="text-black">Web Developer</span>
+                <span class="text-grey">and</span>
+            </div>
+            <div class="hero-subtitle-line">
+                <span class="text-orange">SEO Specialist.</span>
+                <div class="status-badge">
+                    <span class="status-dot"></span> Open to work
+                </div>
+            </div>
+            <div class="hero-footer">
+                <a href="contact.html" class="btn-primary">Contact me</a>
+                <p class="hero-desc">
+                    Feel free to explore my portfolio and reach out <br>
+                    — I’d love to connect!
+                </p>
+            </div>
+        </div>
+    </header>
+    <section class="intro-section" id="about">
+        <div class="intro-container">
+            <h2 class="intro-heading"> I’m a versatile <span class="highlight-text">web developer who partners with
+                    founders to turn ideas into real products.</span> I focus on clear interfaces, sharp decisions, and
+                fast execution.</h2>
+            <div class="intro-bottom-row">
+                <div class="intro-desc-wrapper">
+                    <p class="intro-desc"> Bringing your vision to life quickly and efficiently—whether it's branding,
+                        apps, or websites—I've got it covered, delivering smooth and effective solutions from start to
+                        finish. </p>
+                    <a href="projects.html" class="btn-secondary">See my Work</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="bento-section">
+        <div class="bento-container">
+            <div class="bento-item bento-large-1">
+                <div class="bento-content">
+                    <span class="bento-label">Focus</span>
+                    <h3 class="bento-title">Web Design & <br>Development</h3>
+                    <p class="bento-text">Crafting digital experiences that blend aesthetics with functionality.</p>
+                    <div class="bento-visual">
+                        <div class="ui-card"></div>
+                        <div class="ui-card"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="bento-item bento-square">
+                <div class="bento-content">
+                    <span class="bento-label">Stack</span>
+                    <div class="tech-stack-grid">
+                        <span class="tech-badge">React</span>
+                        <span class="tech-badge">Wordpress</span>
+                        <span class="tech-badge">Shopify</span>
+                        <span class="tech-badge">SEO</span>
+                    </div>
+                </div>
+            </div>
+            <div class="bento-item bento-tall">
+                <div class="bento-content center-content">
+                    <div class="social-circle">
+                        <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </div>
+                    <h3 class="bento-title">Let's Work Together</h3>
+                    <a href="contact.html" class="bento-link-overlay"></a>
+                </div>
+            </div>
+            <div class="bento-item bento-square-2">
+                <div class="bento-content">
+                    <h3 class="bento-stat">2+</h3>
+                    <p class="bento-text">Years of <br>Experience</p>
+                </div>
+            </div>
+            <div class="bento-item bento-wide">
+                <div class="bento-content row-content">
+                    <div class="location-icon">
+                        <div class="pulse-dot"></div>
+                    </div>
+                    <div>
+                        <h3 class="bento-title">Based in India</h3>
+                        <p class="bento-text">Available for global remote work</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bento-item bento-wide-2">
+                <div class="bento-content">
+                    <span class="bento-label">Performance</span>
+                    <h3 class="bento-title">Optimized for Speed</h3>
+                    <div class="speed-bar">
+                        <div class="speed-fill"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="services-section">
+        <div class="services-container">
+            <div class="services-header">
+                <span class="plus-icon">+</span>
+                <h2 class="services-title">We Work With</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card light-card card-with-image">
+                    <span class="card-number">01/</span>
+                    <i class="fa-solid fa-code service-card-icon"></i>
+                    <h3 class="card-text">Custom, high-performance websites built with HTML, CSS, and JS for complete
+                        control.</h3>
+                </div>
+                <div class="service-card light-card">
+                    <span class="card-number">02/</span>
+                    <i class="fa-brands fa-wordpress service-card-icon"></i>
+                    <h3 class="card-text">Scalable and easy-to-manage WordPress websites designed to grow with your
+                        business.</h3>
+                </div>
+                <div class="service-card light-card card-with-image">
+                    <span class="card-number">03/</span>
+                    <i class="fa-brands fa-shopify service-card-icon"></i>
+                    <h3 class="card-text">High-converting Shopify stores optimized for sales, speed, and customer
+                        experience.</h3>
+                </div>
+                <div class="service-card light-card card-with-image">
+                    <span class="card-number">04/</span>
+                    <i class="fa-solid fa-arrow-trend-up service-card-icon"></i>
+                    <h3 class="card-text">Data-driven SEO strategies to boost your ranking and drive organic traffic.
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Behind the Designs Section -->
+    <section class="design-section">
+        <div class="design-container">
+            <div class="design-header">
+                <div class="design-header-left">
+                    <span class="design-subtitle">Behind the Code</span>
+                    <h2 class="design-heading">Building Digital Experiences That Drive Growth</h2>
+                </div>
+                <div class="design-header-right">
+                    <p class="design-desc">
+                        I'm a Web Developer focused on creating fast, responsive, and scalable websites. I turn complex
+                        problems into clean, efficient code that delivers real results.
+                    </p>
+                    <div class="design-cta-wrapper">
+                        <span class="cta-text">Have a project in mind? <br> Let's build it together.</span>
+                        <a href="contact.html" class="design-btn">Start a Project <span class="btn-arrow">→</span></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="design-grid">
+                <div class="design-card full-width-card">
+                    <img src="assets/images/home-page/clothing.webp" alt="Minimalist Jacket Design" class="design-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer-section" id="contact">
+        <div class="footer-container">
+            <div class="footer-icon-wrapper">
+                <i class="fa-regular fa-handshake footer-icon"></i>
+            </div>
+            <h2 class="footer-heading">Tell me about your next project</h2>
+            <div class="footer-buttons">
+                <a href="mailto:rahimdal32@gmail.com" class="footer-btn btn-black">
+                    <i class="fa-solid fa-envelope"></i> rahimdal32@gmail.com
+                </a>
+                <a href="https://wa.me/918320821391" class="footer-btn btn-white">
+                    <i class="fa-brands fa-whatsapp"></i> 8320821391
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span class="copyright">© 2026 All rights reserved.</span>
+            <div class="footer-socials">
+                <a href="https://www.linkedin.com/in/rahim-dal" class="social-link">LinkedIn</a>
+                <span class="social-divider">/</span>
+                <a href="https://github.com/Rahimdal" class="social-link">GitHub</a>
+            </div>
+        </div>
+    </footer>
+    <!-- Lenis Smooth Scroll + GSAP Integration -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="assets/js/smooth-scroll.js"></script>
+    <script src="assets/js/navbar.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>

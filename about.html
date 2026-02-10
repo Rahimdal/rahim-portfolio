@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Rahim</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap"
+        rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@500,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/navbar.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="assets/css/about.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+
+<body>
+    <div class="cursor-follower"></div>
+    <div class="theme-transition-overlay"></div>
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+        <i class="fa-solid fa-moon"></i>
+    </button>
+
+    <!-- Navbar -->
+    <nav class="navbar-container">
+        <div class="navbar">
+            <a href="index.html" class="nav-logo">Rahim.</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="skills.html">Skills</a></li>
+                <li><a href="projects.html">Projects</a></li>
+            </ul>
+            <a href="contact.html" class="nav-btn">Contact</a>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+    <div class="mobile-nav">
+        <ul class="mobile-nav-links">
+            <ul class="mobile-nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="skills.html">Skills</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="contact.html" class="mobile-nav-btn">Contact</a></li>
+            </ul>
+    </div>
+
+    <main class="about-page">
+        <!-- About Hero -->
+        <section class="about-hero">
+            <div class="about-hero-container">
+                <h1 class="about-title">
+                    <span class="about-title-line">Crafting Digital</span>
+                    <span class="about-title-line italic-text">Experiences</span>
+                    <span class="about-title-line">With Purpose.</span>
+                </h1>
+                <p class="about-lead">
+                    I'm Rahim, a Web Developer & SEO Specialist based in India. I build accessible, pixel-perfect, and
+                    performant web experiences.
+                </p>
+            </div>
+        </section>
+
+        <!-- Personal Story Section -->
+        <section class="story-section">
+            <div class="story-container">
+                <div class="story-grid">
+                    <div class="story-content">
+                        <h2 class="section-heading">My Journey</h2>
+                        <div class="story-text">
+                            <p>
+                                My journey into web development began with a curiosity for how things work on the
+                                internet. What started as simple HTML edits turned into a passion for building
+                                full-scale digital solutions. Over the last 2+ years, I've honed my skills in the modern
+                                web stack, focusing on creating interfaces that not only look good but perform
+                                flawlessly.
+                            </p>
+                            <p>
+                                I specialize in React, WordPress, and Shopify, blending code with creativity. My
+                                background in SEO implementation ensures that what I build reaches the right audience. I
+                                believe that great design is invisible—it just works.
+                            </p>
+                            <p>
+                                When I'm not coding, I'm exploring new design trends, optimizing site performance, or
+                                learning the latest JavaScript frameworks. I'm always open to new challenges and
+                                opportunities to collaborate with like-minded individuals.
+                            </p>
+                        </div>
+                        <div class="btn-wrapper-about">
+                            <a href="contact.html" class="btn-primary">Let's Connect</a>
+                        </div>
+                    </div>
+                    <div class="story-visual">
+                        <div class="visual-card card-1">
+                            <i class="fa-solid fa-code"></i>
+                            <span>Developer</span>
+                        </div>
+                        <div class="visual-card card-2">
+                            <i class="fa-solid fa-chart-line"></i>
+                            <span>SEO Expert</span>
+                        </div>
+                        <div class="visual-card card-3">
+                            <i class="fa-solid fa-palette"></i>
+                            <span>Designer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats/Highlights -->
+        <section class="highlights-section">
+            <div class="highlights-container">
+                <div class="highlight-item">
+                    <span class="highlight-number">2+</span>
+                    <span class="highlight-label">Years of Experience</span>
+                </div>
+                <div class="highlight-item">
+                    <span class="highlight-number">2+</span>
+                    <span class="highlight-label">Projects Completed</span>
+                </div>
+                <div class="highlight-item">
+                    <span class="highlight-number">100%</span>
+                    <span class="highlight-label">Client Satisfaction</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section (Copied from index.html) -->
+    <footer class="footer-section" id="contact">
+        <div class="footer-container">
+            <div class="footer-icon-wrapper">
+                <i class="fa-regular fa-handshake footer-icon"></i>
+            </div>
+            <h2 class="footer-heading">Tell me about your next project</h2>
+            <div class="footer-buttons">
+                <a href="mailto:rahimdal32@gmail.com" class="footer-btn btn-black">
+                    <i class="fa-solid fa-envelope"></i> rahimdal32@gmail.com
+                </a>
+                <a href="https://wa.me/918320821391" class="footer-btn btn-white">
+                    <i class="fa-brands fa-whatsapp"></i> 8320821391
+                </a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span class="copyright">© 2024 All rights reserved.</span>
+            <div class="footer-socials">
+                <a href="https://www.linkedin.com/in/rahim-dal" class="social-link">LinkedIn</a>
+                <span class="social-divider">/</span>
+                <a href="https://github.com/Rahimdal" class="social-link">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="assets/js/smooth-scroll.js"></script>
+    <script src="assets/js/navbar.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/about.js"></script>
+</body>
+
+</html>

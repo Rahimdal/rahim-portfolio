@@ -1,0 +1,336 @@
+.about-hero {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    padding: 120px 20px 60px 20px;
+    background-image:
+        linear-gradient(#f1f1f1 1.5px, transparent 1.5px),
+        linear-gradient(90deg, #f1f1f1 1.5px, transparent 1.5px);
+    background-size: 40px 40px;
+    background-position: center top;
+}
+
+.about-hero-container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.about-title {
+    font-family: 'Satoshi', sans-serif;
+    font-size: 5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 30px;
+    color: #000;
+}
+
+.about-title-line {
+    display: block;
+}
+
+.italic-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    color: #64748B;
+}
+
+.about-lead {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.3rem;
+    color: #4B5563;
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.story-section {
+    padding: 100px 20px;
+    background-color: #fff;
+}
+
+.story-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.story-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.section-heading {
+    font-family: 'Satoshi', sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    color: #111;
+}
+
+.story-text p {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.1rem;
+    color: #374151;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+.btn-wrapper-about {
+    margin-top: 40px;
+}
+
+.story-visual {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 200px);
+    gap: 20px;
+}
+
+.visual-card {
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.visual-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border-color: #CBD5E1;
+    background: #fff;
+}
+
+.visual-card i {
+    font-size: 2.5rem;
+    color: #111;
+}
+
+.visual-card span {
+    font-family: 'Satoshi', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #4B5563;
+    margin-top: 10px;
+}
+
+.card-1 {
+    grid-column: span 2;
+    background-color: #111;
+    border-color: #111;
+}
+
+.card-1 i {
+    color: #fff;
+}
+
+.card-1 span {
+    color: #e5e7eb;
+}
+
+.card-1:hover {
+    background-color: #000;
+    border-color: #000;
+}
+
+
+.highlights-section {
+    background-color: #000;
+    color: #fff;
+    padding: 100px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.highlights-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 30px 30px;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.highlights-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 50px;
+    position: relative;
+    z-index: 2;
+}
+
+.highlight-item {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.highlight-number {
+    font-family: 'Satoshi', sans-serif;
+    font-size: 4.5rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.highlight-label {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1rem;
+    color: #9CA3AF;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+}
+
+.nav-links li a.active {
+    color: var(--nav-text-hover);
+}
+
+body.dark-mode .about-page {
+    background-color: #000000;
+}
+
+body.dark-mode .about-hero {
+    background-color: #000000;
+    background-image:
+        linear-gradient(#374151 1.5px, transparent 1.5px),
+        linear-gradient(90deg, #374151 1.5px, transparent 1.5px);
+}
+
+body.dark-mode .about-title {
+    color: #fff;
+}
+
+body.dark-mode .about-lead {
+    color: #D1D5DB;
+}
+
+body.dark-mode .story-section {
+    background-color: #000000;
+}
+
+body.dark-mode .section-heading {
+    color: #fff;
+}
+
+body.dark-mode .story-text p {
+    color: #D1D5DB;
+}
+
+body.dark-mode .visual-card {
+    background: #000000;
+    border-color: #374151;
+}
+
+body.dark-mode .visual-card:hover {
+    background: #000;
+    border-color: #9CA3AF;
+}
+
+body.dark-mode .visual-card i {
+    color: #fff;
+}
+
+body.dark-mode .visual-card span {
+    color: #9CA3AF;
+}
+
+body.dark-mode .card-1 {
+    background-color: #000;
+    border-color: #333;
+}
+
+body.dark-mode .card-1:hover {
+    border-color: #fff;
+}
+
+body.dark-mode .highlights-section {
+    background-color: #000;
+    border-top: 1px solid #333;
+}
+
+body.dark-mode .highlight-number {
+    color: #fff;
+}
+
+body.dark-mode .highlight-label {
+    color: #9CA3AF;
+}
+
+@media (max-width: 1024px) {
+    .about-title {
+        font-size: 4rem;
+    }
+
+    .story-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+
+    .story-visual {
+        max-width: 600px;
+        margin: 0 auto;
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-hero {
+        min-height: auto;
+        padding: 100px 20px 60px 20px;
+    }
+
+    .about-title {
+        font-size: 3rem;
+    }
+
+    .about-lead {
+        font-size: 1.1rem;
+    }
+
+    .highlights-container {
+        flex-direction: column;
+        gap: 60px;
+    }
+
+    .highlight-number {
+        font-size: 3.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-title {
+        font-size: 2.5rem;
+    }
+
+    .story-visual {
+        grid-template-rows: repeat(2, 150px);
+    }
+
+    .card-1 i {
+        font-size: 2rem;
+    }
+}
