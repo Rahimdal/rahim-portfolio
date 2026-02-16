@@ -281,7 +281,7 @@
         z-index: 2;
     }
 
-    .send-btn::before {
+    /* .send-btn::before {
         content: '';
         position: absolute;
         top: 0;
@@ -295,7 +295,8 @@
 
     .send-btn:hover::before {
         width: 100%;
-    }
+    } */
+
 
     .btn-arrow {
         position: relative;
@@ -393,7 +394,7 @@
         background: #000000;
     }
 
-    body.dark-mode .send-btn {
+    /* body.dark-mode .send-btn {
         background: #fff;
         color: #000;
     }
@@ -404,7 +405,8 @@
 
     body.dark-mode .send-btn:hover {
         color: #fff;
-    }
+    } */
+
 
     /* Responsive */
     @media (max-width: 1024px) {

@@ -182,7 +182,7 @@
     }
 
     .nav-btn {
-        display: none;
+        display: none !important;
     }
 
     .menu-toggle {

@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 opacity: 0,
                 duration: 1
             });
-            const sections = [".bento-section", ".services-section", ".design-section", ".footer-section", ".story-section", ".highlights-section", ".skills-hero", ".skills-interaction-section"];
+            const sections = [".bento-section", ".design-section", ".footer-section", ".story-section", ".highlights-section", ".skills-hero", ".skills-interaction-section"];
 
             sections.forEach(section => {
                 gsap.from(section, {
@@ -64,6 +64,32 @@ document.addEventListener('DOMContentLoaded', () => {
                     borderRadius: "40px",
                     ease: "power2.out"
                 });
+            });
+
+            // Separate animation for Services Section
+            gsap.from(".services-header", {
+                scrollTrigger: {
+                    trigger: ".services-section",
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
+                },
+                y: 30,
+                opacity: 0,
+                duration: 0.8,
+                ease: "power2.out"
+            });
+
+            gsap.from(".service-card", {
+                scrollTrigger: {
+                    trigger: ".services-grid",
+                    start: "top 85%",
+                    toggleActions: "play none none reverse"
+                },
+                y: 50,
+                opacity: 0,
+                duration: 0.6,
+                stagger: 0.2,
+                ease: "power2.out"
             });
         }
     }

@@ -1338,8 +1338,7 @@ body.dark-mode .theme-toggle {
 
     .service-card-icon {
         font-size: 3.5rem;
-        opacity: 1;
-        color: #ffffff;
+        opacity: 0.12;
     }
 
     .hero-title {
@@ -1357,59 +1356,4 @@ body.dark-mode .theme-toggle {
         margin-left: 0;
         margin-top: 5px;
     }
-}
-
-/* Common Animated Button */
-.btn-animated {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    background-color: #000;
-    color: #fff;
-    border: 1px solid #000;
-    z-index: 1;
-    transition: all 0.3s ease;
-}
-
-.btn-animated::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background-color: #fff;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-    z-index: -1;
-}
-
-.btn-animated:hover {
-    color: #000;
-}
-
-.btn-animated:hover::before {
-    transform: scaleX(1);
-    transform-origin: left;
-    /* Ensure it expands from left */
-}
-
-/* Dark Mode Adjustments for Animated Button */
-body.dark-mode .btn-animated {
-    /* Keep Black BG, White Text, but add White Border */
-    background-color: #000;
-    color: #fff;
-    border: 1px solid #fff;
-}
-
-body.dark-mode .btn-animated:hover {
-    color: #000;
-}
-
-body.dark-mode .btn-animated::before {
-    background-color: #fff;
-    /* Fill with white so text becomes black. This matches the request. */
 }
