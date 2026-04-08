@@ -24,6 +24,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (typeof ScrollTrigger !== 'undefined') {
             gsap.registerPlugin(ScrollTrigger);
+
+              // Global Motion Blur on Scroll
+            // Applies to the whole home page, and clears ("makes proper") when scrolling stops!
+            const blurElements = gsap.utils.toArray("header, section, footer");
+            
+            // Hook directly into Lenis for perfectly smooth velocity tracking
+            if (window.lenis) {
+                window.lenis.on('scroll', (e) => {
+                    const velocity = Math.abs(e.velocity);
+                    
+                    // Map scroll speed to blur amount (max 12px)
+                    const blurAmount = Math.min(velocity * 0.4, 12);
+                    
+                    blurElements.forEach(el => {
+                        if (blurAmount > 0.5) {
+                            el.style.filter = `blur(${blurAmount}px)`;
+                        } else {
+                            // "Make proper" - snap back to perfectly clear when stopped
+                            el.style.filter = `blur(0px)`;
+                        }
+                    });
+                });
+            }
+            
             gsap.from(".intro-section", {
                 scrollTrigger: {
                     trigger: ".intro-section",
