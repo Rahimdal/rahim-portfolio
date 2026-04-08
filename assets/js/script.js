@@ -24,8 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (typeof ScrollTrigger !== 'undefined') {
             gsap.registerPlugin(ScrollTrigger);
-
-              // Global Motion Blur on Scroll
+            
+            // Global Motion Blur on Scroll
             // Applies to the whole home page, and clears ("makes proper") when scrolling stops!
             const blurElements = gsap.utils.toArray("header, section, footer");
             
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                 });
             }
-            
+
             gsap.from(".intro-section", {
                 scrollTrigger: {
                     trigger: ".intro-section",
@@ -115,6 +115,59 @@ document.addEventListener('DOMContentLoaded', () => {
                 stagger: 0.2,
                 ease: "power2.out"
             });
+            
+            // Premium GSAP Classic Image Slider (Fade Auto-only)
+            const sliderTrack = document.querySelector('.classic-slider-track');
+            const slides = document.querySelectorAll('.classic-slide');
+
+            if (sliderTrack && slides.length > 0) {
+                let currentSlide = 0;
+                let isAnimating = false;
+
+                // Setup initial layout where slides are stacked and hidden except the first
+                gsap.set(slides, { opacity: 0, visibility: "hidden" });
+                gsap.set(slides[0], { opacity: 1, visibility: "visible" });
+
+                function goToSlide(index) {
+                    if (isAnimating || slides.length < 2) return;
+                    isAnimating = true;
+                    
+                    const prevSlide = currentSlide;
+                    
+                    // Handle seamless index wrapping
+                    if (index >= slides.length) currentSlide = 0;
+                    else if (index < 0) currentSlide = slides.length - 1;
+                    else currentSlide = index;
+
+                    // Elegantly crossfade the outgoing slide
+                    gsap.to(slides[prevSlide], {
+                        opacity: 0,
+                        duration: 1.5,
+                        ease: "power2.inOut",
+                        onComplete: () => gsap.set(slides[prevSlide], { visibility: "hidden" })
+                    });
+
+                    // Elegantly crossfade the incoming slide
+                    gsap.set(slides[currentSlide], { visibility: "visible" });
+                    gsap.to(slides[currentSlide], {
+                        opacity: 1,
+                        duration: 1.5,
+                        ease: "power2.inOut",
+                        onComplete: () => isAnimating = false
+                    });
+                }
+
+                // Auto sliding every 5 seconds
+                let autoSlide = setInterval(() => goToSlide(currentSlide + 1), 5000);
+                
+                // Pause auto-slider when hovering
+                const sliderContainer = document.querySelector('.classic-slider-container');
+                sliderContainer.addEventListener('mouseenter', () => clearInterval(autoSlide));
+                sliderContainer.addEventListener('mouseleave', () => {
+                    autoSlide = setInterval(() => goToSlide(currentSlide + 1), 5000);
+                });
+            }
+
         }
     }
     const toggleBtn = document.getElementById('theme-toggle');
