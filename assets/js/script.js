@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { backgroundPosition: "50% -300px" },
             { backgroundPosition: "50% 0px", duration: 1.5, ease: "back.out(1.7)" }
         )
+            
             .from(".hero-title", {
                 y: 50,
                 opacity: 0,
