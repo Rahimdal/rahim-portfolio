@@ -177,6 +177,11 @@
 }
 
 @media (max-width: 768px) {
+     .gsap-skill-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
     .footer-heading {
         font-size: 2rem;
     }
