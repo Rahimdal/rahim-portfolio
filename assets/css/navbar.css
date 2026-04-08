@@ -36,9 +36,9 @@
 }
 
 .nav-logo {
-    font-family: var(--font-main);
+    font-family: 'Work Sans', sans-serif;
     font-size: 1.6rem;
-    font-weight: 700;
+    font-weight: 400;
     color: var(--logo-color);
     text-decoration: none;
     letter-spacing: 0;
