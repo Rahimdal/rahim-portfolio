@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
             { backgroundPosition: "50% -300px" },
             { backgroundPosition: "50% 0px", duration: 1.5, ease: "back.out(1.7)" }
         )
-            
             .from(".hero-title", {
                 y: 50,
                 opacity: 0,
@@ -25,8 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (typeof ScrollTrigger !== 'undefined') {
             gsap.registerPlugin(ScrollTrigger);
-            
-          
+
 
             gsap.from(".intro-section", {
                 scrollTrigger: {
@@ -95,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 stagger: 0.2,
                 ease: "power2.out"
             });
-            
+
             // Premium GSAP Classic Image Slider (Fade Auto-only)
             const sliderTrack = document.querySelector('.classic-slider-track');
             const slides = document.querySelectorAll('.classic-slide');
@@ -111,9 +109,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 function goToSlide(index) {
                     if (isAnimating || slides.length < 2) return;
                     isAnimating = true;
-                    
+
                     const prevSlide = currentSlide;
-                    
+
                     // Handle seamless index wrapping
                     if (index >= slides.length) currentSlide = 0;
                     else if (index < 0) currentSlide = slides.length - 1;
@@ -139,12 +137,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Auto sliding every 5 seconds
                 let autoSlide = setInterval(() => goToSlide(currentSlide + 1), 5000);
-                
+
                 // Pause auto-slider when hovering
                 const sliderContainer = document.querySelector('.classic-slider-container');
                 sliderContainer.addEventListener('mouseenter', () => clearInterval(autoSlide));
                 sliderContainer.addEventListener('mouseleave', () => {
                     autoSlide = setInterval(() => goToSlide(currentSlide + 1), 5000);
+                });
+            }
+
+            // Expertise Section Text Rotation Animation
+            const expertiseList = document.querySelector(".expertise-list");
+            const expertiseItems = gsap.utils.toArray(".expertise-item");
+            if (expertiseList && expertiseItems.length > 0) {
+                // Ensure no translations from previous logic remain
+                gsap.set(expertiseList, { clearProps: "y" });
+
+                // Words array initialized from the original HTML content
+                const words = ["Performance", "Visibility", "Growth", "Design", "Development", "Frontend", "Seo"];
+                const totalWords = words.length;
+
+                const tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: ".expertise-section",
+                        start: "center center",
+                        end: "+=200%",
+                        pin: true,
+                        scrub: true,
+                        toggleClass: "is-pinned",
+                        onUpdate: (self) => {
+                            const progress = self.progress;
+                            let offset = Math.floor(progress * totalWords);
+                            if (offset >= totalWords) offset = totalWords - 1;
+
+                            expertiseItems.forEach((item, i) => {
+                                const wordIndex = (i + offset) % totalWords;
+                                item.innerText = words[wordIndex];
+                            });
+                        }
+                    }
                 });
             }
 
