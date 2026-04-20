@@ -4,23 +4,49 @@ document.addEventListener('DOMContentLoaded', () => {
         tl.fromTo(".hero-section",
             { backgroundPosition: "50% -300px" },
             { backgroundPosition: "50% 0px", duration: 1.5, ease: "back.out(1.7)" }
-        )
-            .from(".hero-title", {
-                y: 50,
-                opacity: 0,
-                duration: 0.8
-            }, "-=1.2")
-            .from(".hero-subtitle-line", {
-                y: 40,
-                opacity: 0,
-                duration: 0.8,
-                stagger: 0.15
-            }, "-=0.6")
-            .from(".hero-footer", {
+        );
+
+        tl.from(".hero-title", {
+            y: 50,
+            opacity: 0,
+            duration: 0.8
+        }, "-=1.2");
+
+        // Apply BlurText animation ONLY to the first subtitle line: "I’m a Web Developer and"
+        const firstSubtitle = document.querySelectorAll(".hero-subtitle-line")[0];
+        if (firstSubtitle) {
+            const targets = Array.from(firstSubtitle.children);
+            tl.fromTo(targets, 
+                { filter: 'blur(10px)', opacity: 0, y: -50 },
+                {
+                    keyframes: [
+                        { filter: 'blur(5px)', opacity: 0.5, y: 5, duration: 0.4 },
+                        { filter: 'blur(0px)', opacity: 1, y: 0, duration: 0.4 }
+                    ],
+                    stagger: 0.15,
+                    ease: "power2.out"
+                },
+                "-=0.6"
+            );
+        }
+
+        // Simple animation for the rest of the subtitle and status
+        const secondSubtitle = document.querySelectorAll(".hero-subtitle-line")[1];
+        if (secondSubtitle) {
+            tl.from(secondSubtitle, {
                 y: 30,
                 opacity: 0,
                 duration: 0.8
             }, "-=0.6");
+        }
+
+        // Recovered the button and footer description animation
+        tl.from(".hero-footer", {
+            y: 30,
+            opacity: 0,
+            duration: 0.8
+        }, "-=0.6");
+
 
         if (typeof ScrollTrigger !== 'undefined') {
             gsap.registerPlugin(ScrollTrigger);
