@@ -1275,6 +1275,7 @@ body.dark-mode .theme-toggle {
 
     .hero-desc {
         text-align: center;
+         font-size: 0.8rem;
     }
 
     .btn-primary {
