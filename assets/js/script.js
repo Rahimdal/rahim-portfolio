@@ -264,3 +264,37 @@ document.addEventListener('DOMContentLoaded', () => {
         animateFollower();
     }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Check if GSAP and ScrollTrigger are loaded
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+        initScrollStack();
+    }
+});
+
+function initScrollStack() {
+    const cards = gsap.utils.toArray('.scroll-stack-item');
+    
+    cards.forEach((card, index) => {
+        // Create an animation for each card as it scrolls into the stack
+        // We only animate the cards that are NOT the last one to scale down and fade
+        if (index < cards.length - 1) {
+            gsap.to(card, {
+                scrollTrigger: {
+                    trigger: cards[index + 1], // Triggered when the NEXT card starts coming up
+                    start: "top 80%", // Start early for smooth transition
+                    end: "top 100px",
+                    scrub: true,
+                },
+                scale: 0.9,
+                opacity: 0.6,
+                filter: "blur(2px) brightness(0.4)",
+            });
+        }
+    });
+
+    // Refresh ScrollTrigger to ensure correct calculations
+    ScrollTrigger.refresh();
+}
+
