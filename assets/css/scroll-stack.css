@@ -1,0 +1,174 @@
+.scroll-stack-section {
+    padding: 100px 20px;
+    background-color: #ffffff;
+}
+
+.scroll-stack-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.scroll-stack-header {
+    margin-bottom: 60px;
+    text-align: left;
+}
+
+.scroll-stack-subtitle {
+    color: #EA580C;
+    font-weight: 600;
+    font-size: 1rem;
+    display: block;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.scroll-stack-title {
+    font-family: 'Satoshi', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    color: #111;
+    line-height: 1.1;
+    margin: 0;
+}
+
+.scroll-stack {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0; /* Cards will stack */
+}
+
+.scroll-stack-item {
+    position: sticky;
+    top: 100px;
+    width: 100%;
+    min-height: 500px;
+    background-color: #0c0c0c;
+    color: #ffffff;
+    border-radius: 40px;
+    padding: 80px;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 
+        0 -20px 40px rgba(0, 0, 0, 0.4),
+        0 0 100px rgba(234, 88, 12, 0.05); /* Subtle orange glow */
+    transform-origin: top center;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.scroll-stack-item::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(234, 88, 12, 0.03) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.card-content {
+    max-width: 700px;
+    position: relative;
+    z-index: 2;
+}
+
+.card-icon {
+    font-size: 4rem;
+    background: linear-gradient(135deg, #EA580C 0%, #FB923C 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 40px;
+    display: inline-block;
+    filter: drop-shadow(0 0 10px rgba(234, 88, 12, 0.3));
+}
+
+.card-title {
+    font-family: 'Satoshi', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+.card-desc {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.25rem;
+    color: #94A3B8;
+    line-height: 1.6;
+    max-width: 90%;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 60px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.card-tag {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #EA580C;
+    font-weight: 700;
+    background: rgba(234, 88, 12, 0.1);
+    padding: 8px 16px;
+    border-radius: 50px;
+}
+
+.card-index {
+    font-family: 'Satoshi', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #334155;
+}
+
+/* Responsiveness */
+@media (max-width: 1024px) {
+    .scroll-stack-item {
+        padding: 60px;
+        min-height: 450px;
+    }
+}
+
+@media (max-width: 768px) {
+    .scroll-stack-section {
+        padding: 60px 15px;
+    }
+
+    .scroll-stack-item {
+        padding: 40px 25px;
+        min-height: 420px;
+        top: 80px;
+        border-radius: 30px;
+    }
+    
+    .card-icon {
+        font-size: 3rem;
+        margin-bottom: 30px;
+    }
+
+    .card-title {
+        font-size: 1.75rem;
+    }
+
+    .card-desc {
+        font-size: 1.1rem;
+        max-width: 100%;
+    }
+
+    .card-footer {
+        margin-top: 40px;
+    }
+}
