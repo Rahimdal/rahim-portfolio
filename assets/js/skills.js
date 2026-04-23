@@ -230,3 +230,20 @@
                 });
             });
         });
+
+function initScrollStack() {
+    // Header Reveal Animation
+    const revealTexts = gsap.utils.toArray('.scroll-stack-header .reveal-text');
+    
+    gsap.from(revealTexts, {
+        y: "120%",
+        opacity: 0,
+        duration: 1.2,
+        ease: "power4.out",
+        stagger: 0.15,
+        scrollTrigger: {
+            trigger: ".scroll-stack-header",
+            start: "top 85%",
+            toggleActions: "restart none none reverse"
+        }
+    });
