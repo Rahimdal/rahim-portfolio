@@ -297,4 +297,17 @@ function initScrollStack() {
     // Refresh ScrollTrigger to ensure correct calculations
     ScrollTrigger.refresh();
 }
-
+   // Intro Section Reveal Animation
+            const introRevealTexts = gsap.utils.toArray('.intro-section .reveal-text');
+            gsap.from(introRevealTexts, {
+                y: "110%",
+                opacity: 0,
+                duration: 1.2,
+                ease: "power4.out",
+                stagger: 0.1,
+                scrollTrigger: {
+                    trigger: ".intro-section",
+                    start: "top 75%",
+                    toggleActions: "restart none none reverse"
+                }
+            });
