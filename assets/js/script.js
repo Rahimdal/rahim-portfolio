@@ -101,20 +101,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
 
-            // Bento Grid Stagger Animation
-            gsap.from(".bento-item", {
-                scrollTrigger: {
-                    trigger: ".bento-section",
-                    start: "top 80%",
-                    toggleActions: "play none none reverse"
-                },
-                y: 50,
-                scale: 0.95,
-                opacity: 0,
-                duration: 0.8,
-                stagger: 0.1,
-                ease: "back.out(1.2)"
-            });
+            gsap.fromTo(".bento-item", 
+                { y: 50, scale: 0.95, opacity: 0 },
+                {
+                    scrollTrigger: {
+                        trigger: ".bento-section",
+                        start: "top 80%",
+                        toggleActions: "play none none reverse"
+                    },
+                    y: 0,
+                    scale: 1,
+                    opacity: 1,
+                    duration: 0.8,
+                    stagger: 0.1,
+                    ease: "back.out(1.2)"
+                }
+            );
 
             // Services Section Reveal Animation
             const servicesRevealTexts = gsap.utils.toArray('.scroll-stack-header .reveal-text');
@@ -133,18 +135,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
 
-            gsap.from(".service-card", {
-                scrollTrigger: {
-                    trigger: ".services-grid",
-                    start: "top 85%",
-                    toggleActions: "play none none reverse"
-                },
-                y: 50,
-                opacity: 0,
-                duration: 0.6,
-                stagger: 0.2,
-                ease: "power2.out"
-            });
 
             // Premium GSAP Classic Image Slider (Fade Auto-only)
             const sliderTrack = document.querySelector('.classic-slider-track');
