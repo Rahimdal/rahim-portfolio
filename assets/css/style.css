@@ -1070,6 +1070,19 @@ body.dark-mode .theme-toggle {
     box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
 }
 
+/* Global Reveal Animation Utility */
+.reveal-wrapper {
+    overflow: hidden;
+    padding-bottom: 0.15em;
+    margin-bottom: -0.15em;
+    display: block;
+}
+
+.reveal-text {
+    display: block;
+    will-change: transform, opacity;
+}
+
 /* Responsive Services */
 @media (max-width: 1200px) {
     .services-section {
