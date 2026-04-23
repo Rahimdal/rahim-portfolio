@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const firstSubtitle = document.querySelectorAll(".hero-subtitle-line")[0];
         if (firstSubtitle) {
             const targets = Array.from(firstSubtitle.children);
-            tl.fromTo(targets, 
+            tl.fromTo(targets,
                 { filter: 'blur(10px)', opacity: 0, y: -50 },
                 {
                     keyframes: [
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 borderRadius: "40px",
                 ease: "power2.out"
             });
-           
+
             // Intro Section Reveal Animation
             const introRevealTexts = gsap.utils.toArray('.intro-section .intro-reveal-text');
             gsap.from(introRevealTexts, {
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            const sections = [".bento-section", ".design-section", ".footer-section", ".story-section", ".highlights-section", ".skills-hero", ".skills-interaction-section"];
+            const sections = [".design-section", ".footer-section", ".story-section", ".highlights-section", ".skills-hero", ".skills-interaction-section"];
 
             sections.forEach(section => {
                 gsap.from(section, {
@@ -101,18 +101,37 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
 
-            // Separate animation for Services Section
-            gsap.from(".services-header", {
+            // Bento Grid Stagger Animation
+            gsap.from(".bento-item", {
                 scrollTrigger: {
-                    trigger: ".services-section",
+                    trigger: ".bento-section",
                     start: "top 80%",
                     toggleActions: "play none none reverse"
                 },
-                y: 30,
+                y: 50,
+                scale: 0.95,
                 opacity: 0,
                 duration: 0.8,
-                ease: "power2.out"
+                stagger: 0.1,
+                ease: "back.out(1.2)"
             });
+
+            // Services Section Reveal Animation
+            const servicesRevealTexts = gsap.utils.toArray('.scroll-stack-header .reveal-text');
+            if (servicesRevealTexts.length > 0) {
+                gsap.from(servicesRevealTexts, {
+                    y: "110%",
+                    opacity: 0,
+                    duration: 1.2,
+                    ease: "power4.out",
+                    stagger: 0.1,
+                    scrollTrigger: {
+                        trigger: ".scroll-stack-section",
+                        start: "top 75%",
+                        toggleActions: "restart none none reverse"
+                    }
+                });
+            }
 
             gsap.from(".service-card", {
                 scrollTrigger: {
@@ -282,7 +301,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function initScrollStack() {
     const cards = gsap.utils.toArray('.scroll-stack-item');
-    
+
     cards.forEach((card, index) => {
         // Create an animation for each card as it scrolls into the stack
         // We only animate the cards that are NOT the last one to scale down and fade
