@@ -2,16 +2,7 @@
     padding: 100px 20px;
     background-color: #ffffff;
 }
-.reveal-wrapper {
-    overflow: hidden;
-    padding-bottom: 0.2em;
-    margin-bottom: -0.2em;
-}
 
-.reveal-text {
-    display: block;
-    will-change: transform, opacity;
-}
 .scroll-stack-container {
     max-width: 1200px;
     margin: 0 auto;
