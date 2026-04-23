@@ -1166,6 +1166,31 @@ body.dark-mode .theme-toggle {
         grid-column: span 2;
     }
 }
+/* Global Reveal Animation Utility */
+.reveal-wrapper {
+    overflow: hidden;
+    padding-bottom: 0.15em;
+    margin-bottom: -0.15em;
+    display: block;
+}
+
+.reveal-text {
+    display: block;
+    will-change: transform, opacity;
+}
+
+/* Intro Section Specific Reveal */
+.intro-reveal-wrapper {
+    overflow: hidden;
+    padding-bottom: 0.1em;
+    margin-bottom: -0.1em;
+    display: block;
+}
+
+.intro-reveal-text {
+    display: block;
+    will-change: transform, opacity;
+}
 
 @media (max-width: 768px) {
 
