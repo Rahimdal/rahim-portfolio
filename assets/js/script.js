@@ -66,8 +66,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 borderRadius: "40px",
                 ease: "power2.out"
             });
-              // Intro Section Reveal Animation
-            const introRevealTexts = gsap.utils.toArray('.intro-section .reveal-text');
+           
+            // Intro Section Reveal Animation
+            const introRevealTexts = gsap.utils.toArray('.intro-section .intro-reveal-text');
             gsap.from(introRevealTexts, {
                 y: "110%",
                 opacity: 0,
