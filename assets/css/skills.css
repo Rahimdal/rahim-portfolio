@@ -78,31 +78,48 @@
 
 .skill-item {
     font-family: 'Satoshi', sans-serif;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: 700;
-    color: #9CA3AF;
+    color: #94A3B8;
     cursor: pointer;
-    transition: all 0.3s ease;
-    padding: 10px 20px;
-    border-radius: 12px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    padding: 20px 30px;
+    border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    position: relative;
+    background: transparent;
+    border: 1px solid transparent;
 }
 
 .skill-item:hover {
-    color: #111;
-    background-color: #E2E8F0;
-    padding-left: 30px;
+    color: #0F172A;
+    background-color: #F1F5F9;
+    padding-left: 40px;
+    border-color: #E2E8F0;
 }
 
 .skill-item.active {
     color: #000;
     background-color: #fff;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-    border-left: 5px solid #EA580C;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+    border-left: 6px solid #EA580C;
+    padding-left: 40px;
+}
+
+.skill-item::after {
+    content: '→';
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+}
+
+.skill-item.active::after, .skill-item:hover::after {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 .skill-display-wrapper {
@@ -113,14 +130,27 @@
 .skill-card {
     background: #fff;
     border-radius: 32px;
-    padding: 40px;
-    box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.05);
-    border: 1px solid #E2E8F0;
-    min-height: 400px;
+    padding: 48px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
+    border: 1px solid #F1F5F9;
+    min-height: 450px;
     display: flex;
     flex-direction: column;
-    transition: all 0.3s ease;
-    border-top: 4px solid #EA580C;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    border-top: 6px solid #EA580C;
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(248, 250, 252, 0.5) 0%, rgba(255, 255, 255, 0) 100%);
+    pointer-events: none;
 }
 
 .skill-header {
@@ -129,20 +159,27 @@
     align-items: center;
     margin-bottom: 30px;
     border-bottom: 1px solid #F1F5F9;
-    padding-bottom: 20px;
+    padding-bottom: 25px;
+    position: relative;
+    z-index: 1;
 }
 
 .skill-name {
     font-family: 'Satoshi', sans-serif;
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-weight: 700;
     margin: 0;
-    color: #111;
+    color: #0F172A;
 }
 
 .skill-icon {
-    font-size: 3rem;
+    font-size: 3.5rem;
     color: #EA580C;
+    transition: transform 0.5s ease;
+}
+
+.skill-card:hover .skill-icon {
+    transform: scale(1.1) rotate(5deg);
 }
 
 .skill-body {
@@ -280,8 +317,8 @@ body.dark-mode .skill-details-list li {
     }
 
     .skill-item {
-        font-size: 1rem;
-        padding: 10px;
+        font-size: 1.2rem;
+        padding: 15px;
         justify-content: center;
         text-align: center;
     }
