@@ -198,42 +198,58 @@
             const cardList = document.querySelector('.skill-details-list');
             const card = document.getElementById('skill-card');
             listItems.forEach(item => {
+                // Hover interaction
                 item.addEventListener('mouseenter', () => {
-                    listItems.forEach(li => li.classList.remove('active'));
-                    item.classList.add('active');
-                    const key = item.getAttribute('data-skill');
-                    const data = skillsData[key];
-                    if (data) {
-                        gsap.to(card, {
-                            opacity: 0,
-                            y: 10,
-                            duration: 0.2,
-                            onComplete: () => {
-                                cardTitle.textContent = data.title;
-                                cardIcon.className = `fa-solid ${data.icon.startsWith('fa-') ? data.icon : 'fa-' + data.icon}`;
-                                card.style.borderTop = `4px solid ${data.color}`;
-                                cardList.innerHTML = '';
-                                data.details.forEach(detail => {
-                                    const li = document.createElement('li');
-                                    li.innerHTML = `<i class="fa-solid fa-check" style="color: ${data.color}"></i> ${detail}`;
-                                    cardList.appendChild(li);
-                                });
-                                gsap.to(card, {
-                                    opacity: 1,
-                                    y: 0,
-                                    duration: 0.3,
-                                    ease: "power2.out"
-                                });
-                            }
-                        });
-                    }
+                    updateSkillCard(item);
+                });
+
+                // Scroll interaction
+                ScrollTrigger.create({
+                    trigger: item,
+                    start: "top 60%",
+                    end: "bottom 60%",
+                    onEnter: () => updateSkillCard(item),
+                    onEnterBack: () => updateSkillCard(item),
                 });
             });
+
+            function updateSkillCard(item) {
+                const key = item.getAttribute('data-skill');
+                const data = skillsData[key];
+                
+                if (data && !item.classList.contains('active')) {
+                    listItems.forEach(li => li.classList.remove('active'));
+                    item.classList.add('active');
+
+                    gsap.to(card, {
+                        opacity: 0,
+                        y: 10,
+                        duration: 0.2,
+                        onComplete: () => {
+                            cardTitle.textContent = data.title;
+                            cardIcon.className = `fa-solid ${data.icon.startsWith('fa-') ? data.icon : 'fa-' + data.icon}`;
+                            card.style.borderTop = `4px solid ${data.color}`;
+                            cardList.innerHTML = '';
+                            data.details.forEach(detail => {
+                                const li = document.createElement('li');
+                                li.innerHTML = `<i class="fa-solid fa-check" style="color: ${data.color}"></i> ${detail}`;
+                                cardList.appendChild(li);
+                            });
+                            gsap.to(card, {
+                                opacity: 1,
+                                y: 0,
+                                duration: 0.3,
+                                ease: "power2.out"
+                            });
+                        }
+                    });
+                }
+            }
         });
 
 function initScrollStack() {
     // Header Reveal Animation
-    const revealTexts = gsap.utils.toArray('.scroll-stack-header .reveal-text');
+    const revealTexts = gsap.utils.toArray('.skills-hero .skills-title-line');
     
     gsap.from(revealTexts, {
         y: "120%",
@@ -242,8 +258,17 @@ function initScrollStack() {
         ease: "power4.out",
         stagger: 0.15,
         scrollTrigger: {
-            trigger: ".scroll-stack-header",
+            trigger: ".skills-hero",
             start: "top 85%",
             toggleActions: "restart none none reverse"
         }
     });
+}
+
+// Call initialization
+document.addEventListener('DOMContentLoaded', () => {
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+        initScrollStack();
+    }
+});
