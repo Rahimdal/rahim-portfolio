@@ -1736,4 +1736,9 @@ body.dark-mode .expertise-section.is-pinned .fixed-arrow {
         height: 2.2rem;
         margin-right: 15px;
     }
+      /* "Hi, I'm" goes on its own line on mobile only */
+    .hero-greeting {
+        display: block;
+        width: 100%;
+    }
 }
