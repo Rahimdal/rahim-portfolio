@@ -1,30 +1,39 @@
+// Prevent FOUC (Flash of Unstyled Content) glitch on load
+if (typeof gsap !== 'undefined') {
+    gsap.set(".hero-section", { opacity: 0 });
+    gsap.set([".hero-greeting", ".hero-im", ".hero-name", ".hero-subtitle-line", ".hero-footer"], { opacity: 0, y: 30 });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     if (typeof gsap !== 'undefined') {
         const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-        tl.fromTo(".hero-section",
-            { backgroundPosition: "50% -300px" },
-            { backgroundPosition: "50% 0px", duration: 1.5, ease: "back.out(1.7)" }
+        // Removed backgroundPosition animation as it causes heavy layout recalculation and lag
+        tl.fromTo(".hero-section", 
+            { opacity: 0 }, 
+            { opacity: 1, duration: 0.8 }
         );
 
-        // Separate, fast animations for the hero text and inline avatar
-        tl.from([".hero-greeting", ".hero-im", ".hero-inline-avatar", ".hero-name"], {
-            y: 30,
-            opacity: 0,
-            scale: 0.9,
+        // Separate, fast animations for the hero text
+        tl.to([".hero-greeting", ".hero-im", ".hero-name"], {
+            y: 0,
+            opacity: 1,
+            scale: 1,
             duration: 0.4,
             stagger: 0.1,
             ease: "back.out(1.5)"
-        }, "-=1.3");
-
+        }, "-=0.4");
 
 
         // Apply BlurText animation ONLY to the first subtitle line: "I’m a Web Developer and"
         const firstSubtitle = document.querySelectorAll(".hero-subtitle-line")[0];
         if (firstSubtitle) {
             const targets = Array.from(firstSubtitle.children);
-            tl.fromTo(targets,
-                { filter: 'blur(10px)', opacity: 0, y: -50 },
+            // Reset opacity and y for children since parent has it
+            gsap.set(targets, { opacity: 0, y: -50, filter: 'blur(10px)' });
+            gsap.set(firstSubtitle, { opacity: 1, y: 0 }); // reset parent so children can animate
+
+            tl.to(targets,
                 {
                     keyframes: [
                         { filter: 'blur(5px)', opacity: 0.5, y: 5, duration: 0.4 },
@@ -33,24 +42,24 @@ document.addEventListener('DOMContentLoaded', () => {
                     stagger: 0.15,
                     ease: "power2.out"
                 },
-                "-=0.6"
+                "-=0.2"
             );
         }
 
         // Simple animation for the rest of the subtitle and status
         const secondSubtitle = document.querySelectorAll(".hero-subtitle-line")[1];
         if (secondSubtitle) {
-            tl.from(secondSubtitle, {
-                y: 30,
-                opacity: 0,
+            tl.to(secondSubtitle, {
+                y: 0,
+                opacity: 1,
                 duration: 0.8
             }, "-=0.6");
         }
 
         // Recovered the button and footer description animation
-        tl.from(".hero-footer", {
-            y: 30,
-            opacity: 0,
+        tl.to(".hero-footer", {
+            y: 0,
+            opacity: 1,
             duration: 0.8
         }, "-=0.6");
 
