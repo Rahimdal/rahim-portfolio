@@ -319,3 +319,25 @@ function initScrollStack() {
     // Refresh ScrollTrigger to ensure correct calculations
     ScrollTrigger.refresh();
 }
+// Disable right-click and inspect element shortcuts to protect code
+document.addEventListener('contextmenu', (e) => e.preventDefault());
+
+document.addEventListener('keydown', (e) => {
+    // Disable F12
+    if (e.key === 'F12') {
+        e.preventDefault();
+    }
+    // Disable Ctrl+Shift+I (Inspect), Ctrl+Shift+J (Console), Ctrl+Shift+C (Element Inspect)
+    if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) {
+        e.preventDefault();
+    }
+    // Disable Ctrl+U (View Source)
+    if (e.ctrlKey && (e.key === 'U' || e.key === 'u')) {
+        e.preventDefault();
+    }
+    // Disable Ctrl+S (Save)
+    if (e.ctrlKey && (e.key === 'S' || e.key === 's')) {
+        e.preventDefault();
+    }
+});
+
