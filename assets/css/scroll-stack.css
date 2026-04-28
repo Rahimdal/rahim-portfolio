@@ -1,3 +1,32 @@
+
+/* Dark Mode Overrides */
+body.dark-mode .scroll-stack-section {
+    background-color: #000000;
+}
+
+body.dark-mode .scroll-stack-title {
+    color: #ffffff;
+}
+
+body.dark-mode .scroll-stack-item {
+    background-color: #111111;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 
+        0 -20px 40px rgba(0, 0, 0, 0.6),
+        0 0 100px rgba(234, 88, 12, 0.08);
+}
+
+body.dark-mode .card-desc {
+    color: #9CA3AF;
+}
+
+body.dark-mode .card-index {
+    color: #64748B;
+}
+
+
+
+
 .scroll-stack-section {
     padding: 100px 20px;
     background-color: #ffffff;
