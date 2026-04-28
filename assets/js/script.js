@@ -1,16 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
     if (typeof gsap !== 'undefined') {
         const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
         tl.fromTo(".hero-section",
             { backgroundPosition: "50% -300px" },
             { backgroundPosition: "50% 0px", duration: 1.5, ease: "back.out(1.7)" }
         );
 
-        tl.from(".hero-title", {
-            y: 50,
+        // Separate, fast animations for the hero text and inline avatar
+        tl.from([".hero-greeting", ".hero-im", ".hero-inline-avatar", ".hero-name"], {
+            y: 30,
             opacity: 0,
-            duration: 0.8
-        }, "-=1.2");
+            scale: 0.9,
+            duration: 0.4,
+            stagger: 0.1,
+            ease: "back.out(1.5)"
+        }, "-=1.3");
+
+
 
         // Apply BlurText animation ONLY to the first subtitle line: "I’m a Web Developer and"
         const firstSubtitle = document.querySelectorAll(".hero-subtitle-line")[0];
