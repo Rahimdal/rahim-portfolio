@@ -52,17 +52,61 @@
     padding: 0;
 }
 
+/* ── Vertical roll hover animation on nav links ──────────────────────── */
 .nav-links li a {
     font-family: var(--font-main);
     text-decoration: none;
     color: var(--nav-text);
     font-weight: 600;
     font-size: 1rem;
-    transition: color 0.2s ease;
+
+    /* Clip the overflow so the rolling clone is invisible outside */
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    overflow: hidden;
+    line-height: 1.2;
+    vertical-align: middle;
 }
 
-.nav-links li a:hover {
+/* The clone — sits below, waiting to roll in */
+.nav-links li a::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     color: var(--nav-text-hover);
+    font-weight: 600;
+    transform: translateY(100%);
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+/* Real text span */
+.nav-links li a > .nav-text {
+    display: block;
+}
+
+/* The clone transitions in from below on hover */
+.nav-links li a::before {
+    transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+/* Real text transitions out upward on hover */
+.nav-links li a > .nav-text {
+    display: block;
+    transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1),
+                color     0.4s ease;
+}
+
+.nav-links li a:hover > .nav-text {
+    transform: translateY(-100%);
+    color: var(--nav-text-hover);
+}
+
+.nav-links li a:hover::before {
+    transform: translateY(0%);
 }
 
 .nav-links li a.active {
