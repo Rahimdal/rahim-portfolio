@@ -1744,17 +1744,20 @@ body.dark-mode .expertise-section.is-pinned .fixed-arrow {
 }
 
 
+
 /* Interactive Circle Section */
 .interactive-circle-section {
     position: relative;
     width: 100%;
-    height: 100vh;
-    padding: 100px 0;
+    min-height: 100vh;
+    padding: 40px 0;
     background-color: #ffffff;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: visible;
     transition: background-color 0.5s ease;
 }
 
@@ -1765,34 +1768,30 @@ body.dark-mode .interactive-circle-section {
 .ic-container {
     position: relative;
     width: 100%;
-    height: 100%;
+    flex-grow: 1;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.ic-main-title {
+.ic-coming-soon {
     position: absolute;
-    top: 70px;
-    left: 4%;
-    transform: none;
+    top: 40px;
+    left: 40px;
+    color: #ff6b00; /* Vibrant orange */
     font-family: 'Outfit', sans-serif;
-    font-size: 2.5rem;
+    font-size: 0.85rem;
     font-weight: 700;
-    color: #000000;
-    z-index: 15;
-    text-align: left;
-}
-
-body.dark-mode .ic-main-title {
-    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    z-index: 20;
 }
 
 @media (max-width: 768px) {
-    .ic-main-title {
-        font-size: 1.8rem;
-        top: 50px;
-        left: 5%;
+    .ic-coming-soon {
+        top: 20px;
+        left: 20px;
+        font-size: 0.75rem;
     }
 }
 
@@ -1918,8 +1917,9 @@ body.dark-mode .ic-control-group input[type=range]::-webkit-slider-thumb {
 
 @media (max-width: 768px) {
     .interactive-circle-section {
-        height: 100dvh; /* Proper dynamic full screen height on mobile */
-        padding: 0; /* Remove the huge 100px padding to fix gap */
+        min-height: 100dvh;
+        height: auto;
+        padding: 30px 0;
     }
 
     .ic-controls {
