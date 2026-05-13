@@ -227,6 +227,156 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
 
+                // Interactive Circle Animation
+                const icRing = document.querySelector('.ic-ring');
+                const icItems = document.querySelectorAll('.ic-item');
+                
+                if (icRing && icItems.length > 0) {
+                    let currentRadius = 330; // Slightly smaller round
+                    const numItems = icItems.length;
+
+                    // Initial positioning
+                    function updatePositions(radius) {
+                        icItems.forEach((item, index) => {
+                            const angle = (index / numItems) * Math.PI * 2;
+                            const x = Math.cos(angle) * radius;
+                            const y = Math.sin(angle) * radius;
+                            gsap.set(item, { x: x, y: y, xPercent: -50, yPercent: -50 });
+                        });
+                    }
+                    
+                    // Positions will be set by handleICResize
+
+                    // Rotation Animation Style Logic
+                    let rotationTl;
+                    function setupRotation(styleValue) {
+                        if (rotationTl) rotationTl.kill();
+                        
+                        let currentRot = gsap.getProperty(icRing, "rotation") || 0;
+                        let currentItemsRot = gsap.getProperty(icItems[0], "rotation") || 0;
+                        
+                        if (styleValue >= 50) {
+                            // Linear mode (Smooth continuous rotation)
+                            rotationTl = gsap.timeline({ repeat: -1 });
+                            rotationTl.to(icRing, { rotation: currentRot + 360, duration: 40, ease: "none" }, 0)
+                                      .to(icItems, { rotation: currentItemsRot - 360, duration: 40, ease: "none" }, 0);
+                        } else {
+                            // Push mode (Step by step one by one image)
+                            rotationTl = gsap.timeline({ repeat: -1 });
+                            const stepAngle = 360 / numItems;
+                            for (let i = 1; i <= numItems; i++) {
+                                rotationTl.to(icRing, {
+                                    rotation: currentRot + (stepAngle * i),
+                                    duration: 0.8,
+                                    ease: "power3.inOut"
+                                })
+                                .to(icItems, {
+                                    rotation: currentItemsRot - (stepAngle * i),
+                                    duration: 0.8,
+                                    ease: "power3.inOut"
+                                }, "<") // animate simultaneously
+                                .to({}, { duration: 1.5 }); // Pause between pushes
+                            }
+                        }
+                    }
+                    
+                    // Initialize with Linear (100)
+                    setupRotation(100);
+
+                    // Controls Logic
+                    const radiusInput = document.getElementById('ic-radius');
+                    const sizeInput = document.getElementById('ic-size');
+                    const styleInput = document.getElementById('ic-style');
+
+                    if (radiusInput) {
+                        radiusInput.addEventListener('input', (e) => {
+                            gsap.to(icItems, { borderRadius: `${e.target.value}%`, duration: 0.3 });
+                        });
+                    }
+
+                    let currentBaseSize = 120;
+
+                    function handleICResize() {
+                        currentRadius = window.innerWidth < 768 ? 130 : 330;
+                        updatePositions(currentRadius);
+                        
+                        let baseVal = sizeInput ? parseInt(sizeInput.value) : 120;
+                        currentBaseSize = window.innerWidth < 768 ? baseVal * 0.6 : baseVal;
+                    }
+                    
+                    window.addEventListener('resize', handleICResize);
+                    handleICResize();
+
+                    if (sizeInput) {
+                        sizeInput.addEventListener('input', (e) => {
+                            currentBaseSize = window.innerWidth < 768 ? parseInt(e.target.value) * 0.6 : parseInt(e.target.value);
+                        });
+                    }
+
+                    // Dynamically scale items based on their global position (Left = Small, Right = Large)
+                    gsap.ticker.add(() => {
+                        const ringRot = gsap.getProperty(icRing, "rotation") * (Math.PI / 180);
+                        
+                        icItems.forEach((item, index) => {
+                            const baseAngle = (index / numItems) * Math.PI * 2;
+                            const globalAngle = baseAngle + ringRot;
+                            
+                            // Math.cos(globalAngle) is -1 on the left, +1 on the right
+                            const scaleFactor = 0.5 + (Math.cos(globalAngle) * 0.5); // Maps to 0.0 -> 1.0
+                            const finalScale = 0.5 + (0.5 * scaleFactor); // Maps to 0.5 -> 1.0
+                            
+                            const finalSize = currentBaseSize * finalScale;
+                            gsap.set(item, { 
+                                width: finalSize, 
+                                height: finalSize,
+                                fontSize: (finalSize * 0.25) + "px" // Scale text items proportionally
+                            });
+                        });
+                    });
+
+                    if (styleInput) {
+                        styleInput.addEventListener('change', (e) => {
+                            const styleValue = parseInt(e.target.value);
+                            setupRotation(styleValue);
+                        });
+                    }
+
+                    // Scroll Entry Animation for Interactive Circle Section
+                    gsap.from(".ic-main-title", {
+                        scrollTrigger: {
+                            trigger: ".interactive-circle-section",
+                            start: "top 80%",
+                        },
+                        opacity: 0,
+                        y: -50,
+                        duration: 1,
+                        ease: "power3.out"
+                    });
+                    
+                    gsap.from(".ic-controls", {
+                        scrollTrigger: {
+                            trigger: ".interactive-circle-section",
+                            start: "top 70%",
+                        },
+                        opacity: 0,
+                        scale: 0.8,
+                        duration: 1,
+                        ease: "back.out(1.7)"
+                    });
+
+                    gsap.from(icItems, {
+                        scrollTrigger: {
+                            trigger: ".interactive-circle-section",
+                            start: "top 60%",
+                        },
+                        opacity: 0,
+                        scale: 0,
+                        stagger: 0.1,
+                        duration: 1.5,
+                        ease: "back.out(1.5)"
+                    });
+                }
+
         }
     }
     const toggleBtn = document.getElementById('theme-toggle');
@@ -340,4 +490,5 @@ document.addEventListener('keydown', (e) => {
         e.preventDefault();
     }
 });
+
 
