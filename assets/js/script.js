@@ -256,26 +256,26 @@ document.addEventListener('DOMContentLoaded', () => {
                         let currentItemsRot = gsap.getProperty(icItems[0], "rotation") || 0;
                         
                         if (styleValue >= 50) {
-                            // Linear mode (Smooth continuous rotation)
+                            // Linear mode (Smooth continuous rotation) - FASTER
                             rotationTl = gsap.timeline({ repeat: -1 });
-                            rotationTl.to(icRing, { rotation: currentRot + 360, duration: 40, ease: "none" }, 0)
-                                      .to(icItems, { rotation: currentItemsRot - 360, duration: 40, ease: "none" }, 0);
+                            rotationTl.to(icRing, { rotation: currentRot + 360, duration: 15, ease: "none" }, 0)
+                                      .to(icItems, { rotation: currentItemsRot - 360, duration: 15, ease: "none" }, 0);
                         } else {
-                            // Push mode (Step by step one by one image)
+                            // Push mode (Step by step one by one image) - FASTER
                             rotationTl = gsap.timeline({ repeat: -1 });
                             const stepAngle = 360 / numItems;
                             for (let i = 1; i <= numItems; i++) {
                                 rotationTl.to(icRing, {
                                     rotation: currentRot + (stepAngle * i),
-                                    duration: 0.8,
+                                    duration: 0.5,
                                     ease: "power3.inOut"
                                 })
                                 .to(icItems, {
                                     rotation: currentItemsRot - (stepAngle * i),
-                                    duration: 0.8,
+                                    duration: 0.5,
                                     ease: "power3.inOut"
                                 }, "<") // animate simultaneously
-                                .to({}, { duration: 1.5 }); // Pause between pushes
+                                .to({}, { duration: 0.8 }); // Faster Pause between pushes
                             }
                         }
                     }
@@ -297,7 +297,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     let currentBaseSize = 120;
 
                     function handleICResize() {
-                        currentRadius = window.innerWidth < 768 ? 130 : 330;
+                        if (window.innerWidth < 768) {
+                            currentRadius = 130;
+                        } else if (window.innerHeight < 800) {
+                            currentRadius = 250; // Medium for laptops
+                        } else {
+                            currentRadius = 330; // Large for desktops
+                        }
                         updatePositions(currentRadius);
                         
                         let baseVal = sizeInput ? parseInt(sizeInput.value) : 120;
@@ -342,17 +348,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
 
                     // Scroll Entry Animation for Interactive Circle Section
-                    gsap.from(".ic-main-title", {
-                        scrollTrigger: {
-                            trigger: ".interactive-circle-section",
-                            start: "top 80%",
-                        },
-                        opacity: 0,
-                        y: -50,
-                        duration: 1,
-                        ease: "power3.out"
-                    });
-                    
                     gsap.from(".ic-controls", {
                         scrollTrigger: {
                             trigger: ".interactive-circle-section",
