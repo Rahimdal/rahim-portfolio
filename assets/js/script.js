@@ -487,3 +487,104 @@ document.addEventListener('keydown', (e) => {
 });
 
 
+/* ── Reviews Slider ─────────────────────────────── */
+window.initReviewsSlider = function () {
+    const track = document.getElementById('reviewsTrack');
+    const wrapper = track ? track.closest('.reviews-track-wrapper') : null;
+    const prevBtn = document.querySelector('.reviews-prev');
+    const nextBtn = document.querySelector('.reviews-next');
+
+    if (!track || !wrapper) return;
+
+    const cards = track.querySelectorAll('.review-card');
+    const totalCards = cards.length;
+    if (totalCards === 0) return;
+
+    let currentIndex = 0;
+    let cardWidth = 0;
+    const gap = 24;
+    let visibleCount = 3;
+
+    function getVisibleCount() {
+        const w = window.innerWidth;
+        if (w <= 640) return 1;
+        if (w <= 1024) return 2;
+        return 3;
+    }
+
+    function updateDimensions() {
+        visibleCount = getVisibleCount();
+        const totalGap = gap * (visibleCount - 1);
+        cardWidth = (wrapper.offsetWidth - totalGap) / visibleCount;
+
+        cards.forEach(card => {
+            card.style.minWidth = cardWidth + 'px';
+            card.style.maxWidth = cardWidth + 'px';
+        });
+
+        const maxIndex = Math.max(0, totalCards - visibleCount);
+        if (currentIndex > maxIndex) currentIndex = maxIndex;
+        applyTransform(false);
+    }
+
+    function applyTransform(animate) {
+        const offset = currentIndex * (cardWidth + gap);
+        track.style.transition = animate === false ? 'none' : 'transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1)';
+        track.style.transform = 'translateX(-' + offset + 'px)';
+    }
+
+    function goNext() {
+        const maxIndex = Math.max(0, totalCards - visibleCount);
+        currentIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
+        applyTransform(true);
+    }
+
+    function goPrev() {
+        const maxIndex = Math.max(0, totalCards - visibleCount);
+        currentIndex = currentIndex <= 0 ? maxIndex : currentIndex - 1;
+        applyTransform(true);
+    }
+
+    // Remove old listeners by cloning buttons
+    const newNext = nextBtn.cloneNode(true);
+    const newPrev = prevBtn.cloneNode(true);
+    nextBtn.parentNode.replaceChild(newNext, nextBtn);
+    prevBtn.parentNode.replaceChild(newPrev, prevBtn);
+
+    newNext.addEventListener('click', goNext);
+    newPrev.addEventListener('click', goPrev);
+
+    // Drag / swipe
+    let startX = 0;
+    let isDragging = false;
+
+    wrapper.addEventListener('mousedown', function(e) { startX = e.clientX; isDragging = true; });
+    wrapper.addEventListener('mouseup', function(e) {
+        if (!isDragging) return;
+        isDragging = false;
+        const diff = e.clientX - startX;
+        if (Math.abs(diff) > 50) { diff < 0 ? goNext() : goPrev(); }
+    });
+    wrapper.addEventListener('mouseleave', function() { isDragging = false; });
+
+    wrapper.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, { passive: true });
+    wrapper.addEventListener('touchend', function(e) {
+        const diff = e.changedTouches[0].clientX - startX;
+        if (Math.abs(diff) > 40) { diff < 0 ? goNext() : goPrev(); }
+    });
+
+    // Auto-play
+    if (window._reviewsAutoPlay) clearInterval(window._reviewsAutoPlay);
+    window._reviewsAutoPlay = setInterval(goNext, 6000);
+    wrapper.addEventListener('mouseenter', function() { clearInterval(window._reviewsAutoPlay); });
+    wrapper.addEventListener('mouseleave', function() { window._reviewsAutoPlay = setInterval(goNext, 6000); });
+
+    window.removeEventListener('resize', window._reviewsResizeHandler);
+    window._reviewsResizeHandler = updateDimensions;
+    window.addEventListener('resize', window._reviewsResizeHandler);
+
+    updateDimensions();
+};
+
+
+
