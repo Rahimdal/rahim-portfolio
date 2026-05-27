@@ -358,7 +358,44 @@
             </div>
         </div>
     </section>
+ <!-- Reviews / Testimonials Section -->
+    <section class="reviews-section" id="reviews">
+        <div class="reviews-container">
+            <div class="reviews-header">
+                <div class="reviews-header-left">
+                    <span class="reviews-label">OUR REVIEWS</span>
+                    <h2 class="reviews-heading">What Our <span class="reviews-heading-italic">Portfolio</span> Expresses</h2>
+                </div>
+                <div class="reviews-nav">
+                    <button id="openReviewModalBtn" class="reviews-add-btn" aria-label="Write a review">
+                        <i class="fa-regular fa-user"></i> Write a Review
+                    </button>
+                    <button class="reviews-arrow reviews-prev" aria-label="Previous review">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
+                    <button class="reviews-arrow reviews-next" aria-label="Next review">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+                </div>
+            </div>
 
+            <div class="reviews-track-wrapper">
+                <!-- Loading spinner shown while Firebase fetches reviews -->
+                <div id="reviews-loading" class="reviews-loading">
+                    <span class="reviews-spinner"></span>
+                    <span class="reviews-loading-text">Loading reviews…</span>
+                </div>
+                <!-- Cards injected here by reviews-firebase.js -->
+                <div class="reviews-track" id="reviewsTrack"></div>
+            </div>
+        </div>
+    </section>
     <!-- Footer Section -->
     <footer class="footer-section" id="contact">
      
@@ -388,11 +425,48 @@
             </div>
         </div>
     </footer>
+      <!-- Review Submission Modal -->
+    <div id="reviewModal" class="review-modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="review-modal-card">
+            <div class="review-modal-header">
+                <h3 id="modalTitle" class="review-modal-title">Share Your Experience</h3>
+                <button id="closeReviewModalBtn" class="review-modal-close" aria-label="Close modal">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            
+            <form id="addReviewForm" class="review-modal-form">
+                <div class="form-group">
+                    <label for="reviewName">Your Name</label>
+                    <input type="text" id="reviewName" name="name" required placeholder="e.g. John Doe" maxlength="50">
+                </div>
+                
+                <div class="form-group">
+                    <label for="reviewPosition">Your Position / Company</label>
+                    <input type="text" id="reviewPosition" name="position" required placeholder="e.g. CEO, TechCorp" maxlength="80">
+                </div>
+                
+                <div class="form-group">
+                    <label for="reviewText">Your Review</label>
+                    <textarea id="reviewText" name="review" required placeholder="Write your review here... Max 300 characters." maxlength="300"></textarea>
+                    <div class="char-counter"><span id="charCount">0</span>/300</div>
+                </div>
+
+                <div id="modalFeedback" class="modal-feedback" style="display: none;"></div>
+
+                <button type="submit" id="submitReviewBtn" class="review-submit-btn">
+                    <span class="btn-text">Submit Review</span>
+                    <span class="btn-spinner" style="display: none;"></span>
+                </button>
+            </form>
+        </div>
+    </div>
     <!-- Lenis Smooth Scroll + GSAP Integration -->
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="assets/js/smooth-scroll.js"></script>
     <script src="assets/js/navbar.js"></script>
+        <script type="module" src="assets/js/reviews-firebase.js"></script>
     <script src="assets/js/skills-animations.js"></script>
     <script src="assets/js/script.js"></script>
 </body>
