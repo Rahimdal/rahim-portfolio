@@ -174,6 +174,7 @@ function initReviewModal() {
         // Get values
         const nameVal = document.getElementById('reviewName').value.trim();
         const posVal = document.getElementById('reviewPosition').value.trim();
+        const whatsappVal = document.getElementById('reviewWhatsapp') ? document.getElementById('reviewWhatsapp').value.trim() : '';
         const textVal = textarea.value.trim();
 
         if (!nameVal || !posVal || !textVal) {
@@ -193,6 +194,7 @@ function initReviewModal() {
                 name: nameVal,
                 position: posVal,
                 review: textVal,
+                whatsapp: whatsappVal,
                 order: Date.now() // unique incremental order number based on timestamp
             });
 
@@ -234,4 +236,5 @@ document.addEventListener('DOMContentLoaded', () => {
     loadReviews();
     initReviewModal();
 });
+
 
