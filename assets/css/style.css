@@ -2626,9 +2626,10 @@ body.dark-mode .modal-feedback.error {
 }
 
 
+
 /* Collaborate Section */
 .collaborate-section {
-    padding: 60px 20px;
+    padding: 0 20px 60px 20px;
     background-color: #ffffff;
     display: flex;
     justify-content: center;
@@ -2649,7 +2650,7 @@ body.dark-mode .collaborate-section {
     font-weight: 700;
     color: #111;
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 0;
 }
 
 body.dark-mode .collaborate-title {
@@ -2803,8 +2804,9 @@ body.dark-mode .collab-light {
 
 /* Responsive */
 @media (max-width: 1024px) {
+    /* Keep 3 columns on laptops, but reduce gap */
     .collaborate-grid {
-        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
     }
 }
 
@@ -2823,3 +2825,4 @@ body.dark-mode .collab-light {
         min-height: 250px;
     }
 }
+
