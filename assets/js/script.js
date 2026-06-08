@@ -412,8 +412,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     const follower = document.querySelector('.cursor-follower');
-
-    if (follower && window.matchMedia("(hover: hover)").matches) {
+    if (follower && window.matchMedia("(hover: hover)").matches && window.innerWidth > 1024) {
         let mouseX = 0, mouseY = 0;
         let followerX = 0, followerY = 0;
 
@@ -429,6 +428,8 @@ document.addEventListener('DOMContentLoaded', () => {
             requestAnimationFrame(animateFollower);
         }
         animateFollower();
+    } else if (follower) {
+        follower.style.display = 'none';
     }
 });
 
@@ -585,6 +586,5 @@ window.initReviewsSlider = function () {
 
     updateDimensions();
 };
-
 
 
