@@ -971,9 +971,11 @@ body {
     will-change: transform;
 }
 
-@media (hover: none) {
+@media (hover: none), (max-width: 1024px) {
     .cursor-follower {
-        display: none;
+        display: none !important;
+        visibility: hidden;
+        pointer-events: none;
     }
 }
 
