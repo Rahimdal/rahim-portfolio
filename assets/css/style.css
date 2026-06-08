@@ -2625,3 +2625,201 @@ body.dark-mode .modal-feedback.error {
     border-color: rgba(239, 68, 68, 0.2);
 }
 
+
+/* Collaborate Section */
+.collaborate-section {
+    padding: 60px 20px;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+}
+
+body.dark-mode .collaborate-section {
+    background-color: #050505;
+}
+
+.collaborate-container {
+    max-width: 1200px;
+    width: 100%;
+}
+
+.collaborate-title {
+    font-family: 'Satoshi', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #111;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+body.dark-mode .collaborate-title {
+    color: #fff;
+}
+
+.collaborate-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.collab-card {
+    border-radius: 32px;
+    min-height: 450px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.collab-card:hover {
+    transform: translateY(-5px);
+}
+
+.collab-dark {
+    background: linear-gradient(180deg, #111111 0%, #222222 100%);
+    color: #fff;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.collab-orange {
+    background: linear-gradient(180deg, #f97316 0%, #ea580c 100%);
+    color: #fff;
+    box-shadow: 0 20px 40px rgba(234, 88, 12, 0.2);
+}
+
+.collab-light {
+    background: linear-gradient(180deg, #ffffff 0%, #f3f4f6 100%);
+    color: #111;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+}
+
+body.dark-mode .collab-light {
+    background: linear-gradient(180deg, #1f2937 0%, #111827 100%);
+    color: #fff;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.collab-content {
+    padding: 30px;
+}
+
+.collab-content h3 {
+    font-family: 'Satoshi', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 12px;
+    z-index: 2;
+    position: relative;
+}
+
+.collab-content p {
+    font-size: 1rem;
+    line-height: 1.5;
+    opacity: 0.8;
+    margin: 0;
+    z-index: 2;
+    position: relative;
+}
+
+.collab-visual {
+    flex: 1;
+    position: relative;
+    z-index: 1;
+    min-height: 250px;
+}
+
+.collab-img {
+    width: calc(100% - 40px);
+    height: 100%;
+    object-fit: contain;
+    object-position: bottom;
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+    border-radius: 0 0 20px 20px;
+}
+
+/* Dots patterns */
+.collab-dots {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 15px);
+    grid-template-rows: repeat(5, 15px);
+    gap: 8px;
+}
+
+.dot {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+}
+
+/* Dark card dots */
+.collab-dark .dot.filled { background-color: rgba(255,255,255,0.15); }
+.collab-dark .dot.outline { border: 1.5px solid rgba(255,255,255,0.1); box-sizing: border-box; }
+
+/* Orange card dots */
+.collab-orange .dot.filled { background-color: rgba(255,255,255,0.25); }
+.collab-orange .dot.outline { border: 1.5px solid rgba(255,255,255,0.2); box-sizing: border-box; }
+
+/* Light card circles */
+.collab-light-visual {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    width: 150px;
+    height: 150px;
+}
+
+.lc-circle {
+    position: absolute;
+    border-radius: 50%;
+}
+
+.lc-filled {
+    background-color: #ea580c;
+}
+
+.lc-outline {
+    border: 2px solid #ea580c;
+    box-sizing: border-box;
+}
+
+.lc-1 { width: 30px; height: 30px; top: 0; left: 60px; }
+.lc-2 { width: 40px; height: 40px; top: 20px; left: 85px; }
+.lc-3 { width: 25px; height: 25px; top: 60px; left: 30px; }
+.lc-4 { width: 25px; height: 25px; top: 50px; left: 60px; }
+.lc-5 { width: 20px; height: 20px; top: 60px; left: 130px; }
+
+.lc-6 { width: 30px; height: 30px; top: 50px; left: 90px; }
+.lc-7 { width: 20px; height: 20px; top: 90px; left: 60px; }
+.lc-8 { width: 25px; height: 25px; top: 115px; left: 57px; }
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .collaborate-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .collaborate-grid {
+        grid-template-columns: 1fr;
+    }
+    .collab-card {
+        min-height: auto;
+        padding: 20px;
+    }
+    .collab-card.collab-dark {
+        min-height: 150px;
+    }
+    .collab-visual {
+        min-height: 250px;
+    }
+}
