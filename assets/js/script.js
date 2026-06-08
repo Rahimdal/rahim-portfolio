@@ -428,6 +428,19 @@ document.addEventListener('DOMContentLoaded', () => {
             requestAnimationFrame(animateFollower);
         }
         animateFollower();
+
+        const hoverCards = document.querySelectorAll('.collab-orange');
+        const cursorText = follower.querySelector('.cursor-text');
+        hoverCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                follower.classList.add('expand');
+                if (cursorText) cursorText.textContent = 'Visit Website';
+            });
+            card.addEventListener('mouseleave', () => {
+                follower.classList.remove('expand');
+                if (cursorText) cursorText.textContent = '';
+            });
+        });
     } else if (follower) {
         follower.style.display = 'none';
     }
@@ -438,6 +451,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger);
         initScrollStack();
+        initCollabAnimation();
     }
 });
 
@@ -464,6 +478,39 @@ function initScrollStack() {
 
     // Refresh ScrollTrigger to ensure correct calculations
     ScrollTrigger.refresh();
+}
+
+function initCollabAnimation() {
+    const collabTitle = document.querySelector('.collaborate-title');
+    if (collabTitle) {
+        gsap.from(collabTitle, {
+            scrollTrigger: {
+                trigger: '.collaborate-section',
+                start: 'top 85%'
+            },
+            y: 30,
+            opacity: 0,
+            duration: 0.8,
+            ease: 'power2.out',
+            clearProps: 'transform,opacity'
+        });
+    }
+
+    const collabCards = gsap.utils.toArray('.collab-card');
+    if (collabCards.length > 0) {
+        gsap.from(collabCards, {
+            scrollTrigger: {
+                trigger: '.collaborate-grid',
+                start: 'top 85%'
+            },
+            y: 50,
+            opacity: 0,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: 'power2.out',
+            clearProps: 'transform,opacity'
+        });
+    }
 }
 // Disable right-click and inspect element shortcuts to protect code
 document.addEventListener('contextmenu', (e) => e.preventDefault());
@@ -586,5 +633,9 @@ window.initReviewsSlider = function () {
 
     updateDimensions();
 };
+
+
+
+
 
 
