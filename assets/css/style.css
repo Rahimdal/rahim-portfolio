@@ -2284,9 +2284,8 @@ body.dark-mode .review-avatar-icon {
         font-size: 2.6rem;
     }
     .hero-desc-2 {
-    font-size: 0.1rem;
+    font-size: 0.01rem;
     color: #4B5563;
-    line-height: 1.5;
     max-width: 400px;
     margin: 0;
     text-align: center;
