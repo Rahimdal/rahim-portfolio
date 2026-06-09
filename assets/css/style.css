@@ -2625,4 +2625,11 @@ body.dark-mode .modal-feedback.error {
     border-color: rgba(239, 68, 68, 0.2);
 }
 
-
+.hero-desc-2 {
+    font-size: 0.5rem;
+    color: #4B5563;
+    line-height: 1.5;
+    max-width: 400px;
+    margin: 0;
+    text-align: center;
+}
