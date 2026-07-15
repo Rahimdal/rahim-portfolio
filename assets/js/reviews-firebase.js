@@ -1,7 +1,7 @@
 /* ================================================================
    REVIEWS — Firebase Firestore Integration
    ================================================================
-   Firestore Collection: "reviews"
+   Firestore Collection: "rahim"
    Each document should have these fields:
      - name     (string)  e.g. "Denis Slavska"
      - position (string)  e.g. "CTO, Ailitic · New York"
@@ -9,20 +9,20 @@
      - order    (number)  e.g. 1  ← controls display order
    ================================================================ */
 
-import { initializeApp }  from 'https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js';
-import { getAnalytics }   from 'https://www.gstatic.com/firebasejs/12.13.0/firebase-analytics.js';
+import { initializeApp }  from 'https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js';
+import { getAnalytics }   from 'https://www.gstatic.com/firebasejs/12.16.0/firebase-analytics.js';
 import { getFirestore, collection, getDocs, query, orderBy, addDoc }
-                          from 'https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js';
+                          from 'https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js';
 
 // ── Firebase project credentials ────────────────────────────────
 const firebaseConfig = {
-    apiKey:            "AIzaSyDfHDVU4eEuj4R6qw8cEsw3MuHBkCjBjlQ",
-    authDomain:        "rahim-bfe8e.firebaseapp.com",
-    projectId:         "rahim-bfe8e",
-    storageBucket:     "rahim-bfe8e.firebasestorage.app",
-    messagingSenderId: "164221054753",
-    appId:             "1:164221054753:web:79af1616b030e82c1b9860",
-    measurementId:     "G-BFYZ889F5N"
+    apiKey:            "AIzaSyB4cuv8G1eF_8JVepelDkHg8ONewUfp4DE",
+    authDomain:        "rahim-portfolio-ac140.firebaseapp.com",
+    projectId:         "rahim-portfolio-ac140",
+    storageBucket:     "rahim-portfolio-ac140.firebasestorage.app",
+    messagingSenderId: "734318150059",
+    appId:             "1:734318150059:web:11354ea64056c1c4c952ee",
+    measurementId:     "G-YRX7MVS6NM"
 };
 
 // ── Bootstrap Firebase ──────────────────────────────────────────
@@ -75,7 +75,7 @@ async function loadReviews() {
 
     try {
         // Fetch all reviews without server-side ordering (so it catches docs missing the 'order' field)
-        const snapshot = await getDocs(collection(db, 'reviews'));
+        const snapshot = await getDocs(collection(db, 'rahim'));
         
         track.innerHTML = '';
         
@@ -190,7 +190,7 @@ function initReviewModal() {
 
         try {
             // Save to Firestore reviews collection
-            await addDoc(collection(db, 'reviews'), {
+            await addDoc(collection(db, 'rahim'), {
                 name: nameVal,
                 position: posVal,
                 review: textVal,
@@ -236,5 +236,6 @@ document.addEventListener('DOMContentLoaded', () => {
     loadReviews();
     initReviewModal();
 });
+
 
 
