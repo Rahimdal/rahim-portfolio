@@ -1,4 +1,4 @@
- document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('DOMContentLoaded', () => {
             gsap.from(".skills-title-line", {
                 y: 100,
                 opacity: 0,
@@ -115,11 +115,53 @@
                         "Hooks (useState, useEffect)",
                         "React Router",
                         "State Management (Context/Redux)",
-                        "Next.js Framework",
                         "Component Lifecycle",
+                        "Custom Hooks",
                         "Performance Optimization"
                     ],
                     color: "#61DAFB"
+                },
+                nextjs: {
+                    title: "Next.Js",
+                    icon: "fa-solid fa-n",
+                    details: [
+                        "App Router & Pages Router",
+                        "Server-Side Rendering (SSR)",
+                        "Static Site Generation (SSG)",
+                        "API Routes",
+                        "Image & Font Optimization",
+                        "Middleware & Edge Functions",
+                        "Full-Stack Deployment (Vercel)"
+                    ],
+                    color: "#000000"
+                },
+                framer: {
+                    title: "Framer Motion",
+                    icon: "fa-solid fa-wand-sparkles",
+                    details: [
+                        "Declarative Animations",
+                        "Gestures & Drag Interactions",
+                        "Variants & Orchestration",
+                        "Layout Animations",
+                        "AnimatePresence (Mount/Unmount)",
+                        "Scroll-based Animations",
+                        "SVG Path Drawing"
+                    ],
+                    color: "#BB4AE8"
+                },
+                threejs: {
+                    title: "Three.Js",
+                    icon: "fa-solid fa-cube",
+                    details: [
+                        "3D Scene Setup & Lighting",
+                        "Geometry & Material System",
+                        "GLTF / GLB Model Loading",
+                        "Camera Controls & Orbit",
+                        "Shader Basics (GLSL)",
+                        "Raycasting & Interactivity",
+                        "WebGL Performance Tuning"
+                    ],
+                    color: "#049EF4"
                 },
                 gsap: {
                     title: "GSAP LIBRARY",
