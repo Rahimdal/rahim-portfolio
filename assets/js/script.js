@@ -227,150 +227,150 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
 
-                // Interactive Circle Animation
-                const icRing = document.querySelector('.ic-ring');
-                const icItems = document.querySelectorAll('.ic-item');
-                
-                if (icRing && icItems.length > 0) {
-                    let currentRadius = 330; // Slightly smaller round
-                    const numItems = icItems.length;
+            // Interactive Circle Animation
+            const icRing = document.querySelector('.ic-ring');
+            const icItems = document.querySelectorAll('.ic-item');
 
-                    // Initial positioning
-                    function updatePositions(radius) {
-                        icItems.forEach((item, index) => {
-                            const angle = (index / numItems) * Math.PI * 2;
-                            const x = Math.cos(angle) * radius;
-                            const y = Math.sin(angle) * radius;
-                            gsap.set(item, { x: x, y: y, xPercent: -50, yPercent: -50 });
-                        });
-                    }
-                    
-                    // Positions will be set by handleICResize
+            if (icRing && icItems.length > 0) {
+                let currentRadius = 330; // Slightly smaller round
+                const numItems = icItems.length;
 
-                    // Rotation Animation Style Logic
-                    let rotationTl;
-                    function setupRotation(styleValue) {
-                        if (rotationTl) rotationTl.kill();
-                        
-                        let currentRot = gsap.getProperty(icRing, "rotation") || 0;
-                        let currentItemsRot = gsap.getProperty(icItems[0], "rotation") || 0;
-                        
-                        if (styleValue >= 50) {
-                            // Linear mode (Smooth continuous rotation) - FASTER
-                            rotationTl = gsap.timeline({ repeat: -1 });
-                            rotationTl.to(icRing, { rotation: currentRot + 360, duration: 15, ease: "none" }, 0)
-                                      .to(icItems, { rotation: currentItemsRot - 360, duration: 15, ease: "none" }, 0);
-                        } else {
-                            // Push mode (Step by step one by one image) - FASTER
-                            rotationTl = gsap.timeline({ repeat: -1 });
-                            const stepAngle = 360 / numItems;
-                            for (let i = 1; i <= numItems; i++) {
-                                rotationTl.to(icRing, {
-                                    rotation: currentRot + (stepAngle * i),
-                                    duration: 0.5,
-                                    ease: "power3.inOut"
-                                })
+                // Initial positioning
+                function updatePositions(radius) {
+                    icItems.forEach((item, index) => {
+                        const angle = (index / numItems) * Math.PI * 2;
+                        const x = Math.cos(angle) * radius;
+                        const y = Math.sin(angle) * radius;
+                        gsap.set(item, { x: x, y: y, xPercent: -50, yPercent: -50 });
+                    });
+                }
+
+                // Positions will be set by handleICResize
+
+                // Rotation Animation Style Logic
+                let rotationTl;
+                function setupRotation(styleValue) {
+                    if (rotationTl) rotationTl.kill();
+
+                    let currentRot = gsap.getProperty(icRing, "rotation") || 0;
+                    let currentItemsRot = gsap.getProperty(icItems[0], "rotation") || 0;
+
+                    if (styleValue >= 50) {
+                        // Linear mode (Smooth continuous rotation) - FASTER
+                        rotationTl = gsap.timeline({ repeat: -1 });
+                        rotationTl.to(icRing, { rotation: currentRot + 360, duration: 15, ease: "none" }, 0)
+                            .to(icItems, { rotation: currentItemsRot - 360, duration: 15, ease: "none" }, 0);
+                    } else {
+                        // Push mode (Step by step one by one image) - FASTER
+                        rotationTl = gsap.timeline({ repeat: -1 });
+                        const stepAngle = 360 / numItems;
+                        for (let i = 1; i <= numItems; i++) {
+                            rotationTl.to(icRing, {
+                                rotation: currentRot + (stepAngle * i),
+                                duration: 0.5,
+                                ease: "power3.inOut"
+                            })
                                 .to(icItems, {
                                     rotation: currentItemsRot - (stepAngle * i),
                                     duration: 0.5,
                                     ease: "power3.inOut"
                                 }, "<") // animate simultaneously
                                 .to({}, { duration: 0.8 }); // Faster Pause between pushes
-                            }
                         }
                     }
-                    
-                    // Initialize with Linear (100)
-                    setupRotation(100);
+                }
 
-                    // Controls Logic
-                    const radiusInput = document.getElementById('ic-radius');
-                    const sizeInput = document.getElementById('ic-size');
-                    const styleInput = document.getElementById('ic-style');
+                // Initialize with Linear (100)
+                setupRotation(100);
 
-                    if (radiusInput) {
-                        radiusInput.addEventListener('input', (e) => {
-                            gsap.to(icItems, { borderRadius: `${e.target.value}%`, duration: 0.3 });
-                        });
-                    }
+                // Controls Logic
+                const radiusInput = document.getElementById('ic-radius');
+                const sizeInput = document.getElementById('ic-size');
+                const styleInput = document.getElementById('ic-style');
 
-                    let currentBaseSize = 120;
-
-                    function handleICResize() {
-                        if (window.innerWidth < 768) {
-                            currentRadius = 130;
-                        } else if (window.innerHeight < 800) {
-                            currentRadius = 250; // Medium for laptops
-                        } else {
-                            currentRadius = 330; // Large for desktops
-                        }
-                        updatePositions(currentRadius);
-                        
-                        let baseVal = sizeInput ? parseInt(sizeInput.value) : 120;
-                        currentBaseSize = window.innerWidth < 768 ? baseVal * 0.6 : baseVal;
-                    }
-                    
-                    window.addEventListener('resize', handleICResize);
-                    handleICResize();
-
-                    if (sizeInput) {
-                        sizeInput.addEventListener('input', (e) => {
-                            currentBaseSize = window.innerWidth < 768 ? parseInt(e.target.value) * 0.6 : parseInt(e.target.value);
-                        });
-                    }
-
-                    // Dynamically scale items based on their global position (Left = Small, Right = Large)
-                    gsap.ticker.add(() => {
-                        const ringRot = gsap.getProperty(icRing, "rotation") * (Math.PI / 180);
-                        
-                        icItems.forEach((item, index) => {
-                            const baseAngle = (index / numItems) * Math.PI * 2;
-                            const globalAngle = baseAngle + ringRot;
-                            
-                            // Math.cos(globalAngle) is -1 on the left, +1 on the right
-                            const scaleFactor = 0.5 + (Math.cos(globalAngle) * 0.5); // Maps to 0.0 -> 1.0
-                            const finalScale = 0.5 + (0.5 * scaleFactor); // Maps to 0.5 -> 1.0
-                            
-                            const finalSize = currentBaseSize * finalScale;
-                            gsap.set(item, { 
-                                width: finalSize, 
-                                height: finalSize,
-                                fontSize: (finalSize * 0.25) + "px" // Scale text items proportionally
-                            });
-                        });
-                    });
-
-                    if (styleInput) {
-                        styleInput.addEventListener('change', (e) => {
-                            const styleValue = parseInt(e.target.value);
-                            setupRotation(styleValue);
-                        });
-                    }
-
-                    // Scroll Entry Animation for Interactive Circle Section
-                    gsap.from(".ic-controls", {
-                        scrollTrigger: {
-                            trigger: ".interactive-circle-section",
-                            start: "top 70%",
-                        },
-                        opacity: 0,
-                        scale: 0.8,
-                        duration: 1,
-                        ease: "back.out(1.7)"
-                    });
-
-                    gsap.from(icItems, {
-                        scrollTrigger: {
-                            trigger: ".interactive-circle-section",
-                            start: "top 60%",
-                        },
-                        opacity: 0,
-                        scale: 0,
-                        stagger: 0.1,
-                        duration: 1.5,
-                        ease: "back.out(1.5)"
+                if (radiusInput) {
+                    radiusInput.addEventListener('input', (e) => {
+                        gsap.to(icItems, { borderRadius: `${e.target.value}%`, duration: 0.3 });
                     });
                 }
+
+                let currentBaseSize = 120;
+
+                function handleICResize() {
+                    if (window.innerWidth < 768) {
+                        currentRadius = 130;
+                    } else if (window.innerHeight < 800) {
+                        currentRadius = 250; // Medium for laptops
+                    } else {
+                        currentRadius = 330; // Large for desktops
+                    }
+                    updatePositions(currentRadius);
+
+                    let baseVal = sizeInput ? parseInt(sizeInput.value) : 120;
+                    currentBaseSize = window.innerWidth < 768 ? baseVal * 0.6 : baseVal;
+                }
+
+                window.addEventListener('resize', handleICResize);
+                handleICResize();
+
+                if (sizeInput) {
+                    sizeInput.addEventListener('input', (e) => {
+                        currentBaseSize = window.innerWidth < 768 ? parseInt(e.target.value) * 0.6 : parseInt(e.target.value);
+                    });
+                }
+
+                // Dynamically scale items based on their global position (Left = Small, Right = Large)
+                gsap.ticker.add(() => {
+                    const ringRot = gsap.getProperty(icRing, "rotation") * (Math.PI / 180);
+
+                    icItems.forEach((item, index) => {
+                        const baseAngle = (index / numItems) * Math.PI * 2;
+                        const globalAngle = baseAngle + ringRot;
+
+                        // Math.cos(globalAngle) is -1 on the left, +1 on the right
+                        const scaleFactor = 0.5 + (Math.cos(globalAngle) * 0.5); // Maps to 0.0 -> 1.0
+                        const finalScale = 0.5 + (0.5 * scaleFactor); // Maps to 0.5 -> 1.0
+
+                        const finalSize = currentBaseSize * finalScale;
+                        gsap.set(item, {
+                            width: finalSize,
+                            height: finalSize,
+                            fontSize: (finalSize * 0.25) + "px" // Scale text items proportionally
+                        });
+                    });
+                });
+
+                if (styleInput) {
+                    styleInput.addEventListener('change', (e) => {
+                        const styleValue = parseInt(e.target.value);
+                        setupRotation(styleValue);
+                    });
+                }
+
+                // Scroll Entry Animation for Interactive Circle Section
+                gsap.from(".ic-controls", {
+                    scrollTrigger: {
+                        trigger: ".interactive-circle-section",
+                        start: "top 70%",
+                    },
+                    opacity: 0,
+                    scale: 0.8,
+                    duration: 1,
+                    ease: "back.out(1.7)"
+                });
+
+                gsap.from(icItems, {
+                    scrollTrigger: {
+                        trigger: ".interactive-circle-section",
+                        start: "top 60%",
+                    },
+                    opacity: 0,
+                    scale: 0,
+                    stagger: 0.1,
+                    duration: 1.5,
+                    ease: "back.out(1.5)"
+                });
+            }
 
         }
     }
@@ -606,17 +606,17 @@ window.initReviewsSlider = function () {
     let startX = 0;
     let isDragging = false;
 
-    wrapper.addEventListener('mousedown', function(e) { startX = e.clientX; isDragging = true; });
-    wrapper.addEventListener('mouseup', function(e) {
+    wrapper.addEventListener('mousedown', function (e) { startX = e.clientX; isDragging = true; });
+    wrapper.addEventListener('mouseup', function (e) {
         if (!isDragging) return;
         isDragging = false;
         const diff = e.clientX - startX;
         if (Math.abs(diff) > 50) { diff < 0 ? goNext() : goPrev(); }
     });
-    wrapper.addEventListener('mouseleave', function() { isDragging = false; });
+    wrapper.addEventListener('mouseleave', function () { isDragging = false; });
 
-    wrapper.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, { passive: true });
-    wrapper.addEventListener('touchend', function(e) {
+    wrapper.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; }, { passive: true });
+    wrapper.addEventListener('touchend', function (e) {
         const diff = e.changedTouches[0].clientX - startX;
         if (Math.abs(diff) > 40) { diff < 0 ? goNext() : goPrev(); }
     });
@@ -624,8 +624,8 @@ window.initReviewsSlider = function () {
     // Auto-play
     if (window._reviewsAutoPlay) clearInterval(window._reviewsAutoPlay);
     window._reviewsAutoPlay = setInterval(goNext, 6000);
-    wrapper.addEventListener('mouseenter', function() { clearInterval(window._reviewsAutoPlay); });
-    wrapper.addEventListener('mouseleave', function() { window._reviewsAutoPlay = setInterval(goNext, 6000); });
+    wrapper.addEventListener('mouseenter', function () { clearInterval(window._reviewsAutoPlay); });
+    wrapper.addEventListener('mouseleave', function () { window._reviewsAutoPlay = setInterval(goNext, 6000); });
 
     window.removeEventListener('resize', window._reviewsResizeHandler);
     window._reviewsResizeHandler = updateDimensions;
@@ -633,6 +633,214 @@ window.initReviewsSlider = function () {
 
     updateDimensions();
 };
+
+
+
+/* ============================================================
+   PROJECTS SLIDER — Automatic right-to-left auto-slide (1.8s interval) with GSAP Text Animations
+   ============================================================ */
+function initProjectsSlider() {
+    const track    = document.getElementById('projTrack');
+    const prevBtn  = document.getElementById('projPrev');
+    const nextBtn  = document.getElementById('projNext');
+    const dotsEl   = document.getElementById('projDots');
+
+    if (!track || !prevBtn || !nextBtn) return;
+
+    const slides   = track.querySelectorAll('.proj-slide');
+    const dots     = dotsEl ? dotsEl.querySelectorAll('.proj-dot') : [];
+    const total    = slides.length;
+    let   current  = 0;
+    let   autoPlay = null;
+
+    /* Move track to target slide with GSAP text & image animations */
+    function goTo(index) {
+        current = (index + total) % total;
+        track.style.transform = `translateX(-${current * 100}%)`;
+
+        /* Update active dot */
+        dots.forEach((d, i) => d.classList.toggle('active', i === current));
+
+        /* GSAP Text & Content Animation on Slide Change */
+        if (typeof gsap !== 'undefined') {
+            const activeSlide = slides[current];
+            if (!activeSlide) return;
+
+            const title = activeSlide.querySelector('.proj-slide-title');
+            const desc  = activeSlide.querySelector('.proj-slide-desc');
+            const num   = activeSlide.querySelector('.proj-slide-num');
+            const img   = activeSlide.querySelector('.proj-slide-img');
+            const cat   = activeSlide.querySelector('.proj-slide-cat');
+
+            if (title) {
+                gsap.fromTo(title,
+                    { y: 20, opacity: 0 },
+                    { y: 0, opacity: 1, duration: 0.45, ease: "power2.out" }
+                );
+            }
+            if (desc) {
+                gsap.fromTo(desc,
+                    { y: 15, opacity: 0 },
+                    { y: 0, opacity: 1, duration: 0.45, delay: 0.06, ease: "power2.out" }
+                );
+            }
+            if (num) {
+                gsap.fromTo(num,
+                    { scale: 0.6, opacity: 0 },
+                    { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(1.8)" }
+                );
+            }
+            if (cat) {
+                gsap.fromTo(cat,
+                    { scale: 0.8, opacity: 0 },
+                    { scale: 1, opacity: 1, duration: 0.35, delay: 0.08, ease: "power2.out" }
+                );
+            }
+            if (img) {
+                gsap.fromTo(img,
+                    { scale: 1.08 },
+                    { scale: 1, duration: 0.55, ease: "power2.out" }
+                );
+            }
+        }
+    }
+
+    function goNext() { goTo(current + 1); }
+    function goPrev() { goTo(current - 1); }
+
+    /* Button click listeners */
+    nextBtn.addEventListener('click', function () {
+        stopAuto();
+        goNext();
+        startAuto();
+    });
+
+    prevBtn.addEventListener('click', function () {
+        stopAuto();
+        goPrev();
+        startAuto();
+    });
+
+    /* Dot click listeners */
+    dots.forEach(function (dot) {
+        dot.addEventListener('click', function () {
+            stopAuto();
+            goTo(parseInt(dot.dataset.index, 10));
+            startAuto();
+        });
+    });
+
+    /* Auto-play: 1.8 seconds fast interval */
+    function startAuto() {
+        stopAuto();
+        autoPlay = setInterval(goNext, 1800);
+    }
+
+    function stopAuto() {
+        if (autoPlay) {
+            clearInterval(autoPlay);
+            autoPlay = null;
+        }
+    }
+
+    /* Pause auto-play when hovering over the section */
+    const section = document.getElementById('projects-preview');
+    if (section) {
+        section.addEventListener('mouseenter', stopAuto);
+        section.addEventListener('mouseleave', startAuto);
+    }
+
+    /* Touch & swipe gesture support */
+    let touchStartX = 0;
+    track.addEventListener('touchstart', function (e) {
+        touchStartX = e.changedTouches[0].clientX;
+    }, { passive: true });
+
+    track.addEventListener('touchend', function (e) {
+        const diff = e.changedTouches[0].clientX - touchStartX;
+        if (Math.abs(diff) > 40) {
+            stopAuto();
+            diff < 0 ? goNext() : goPrev();
+            startAuto();
+        }
+    }, { passive: true });
+
+    /* Keyboard navigation support when visible */
+    document.addEventListener('keydown', function (e) {
+        if (!section) return;
+        const rect = section.getBoundingClientRect();
+        if (rect.top > window.innerHeight || rect.bottom < 0) return;
+        if (e.key === 'ArrowRight') { stopAuto(); goNext(); startAuto(); }
+        if (e.key === 'ArrowLeft')  { stopAuto(); goPrev(); startAuto(); }
+    });
+
+    /* GSAP ScrollTrigger Entrance Reveal for Header & Slider Section */
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.from(".proj-slider-tag", {
+            scrollTrigger: {
+                trigger: "#projects-preview",
+                start: "top 85%",
+                toggleActions: "play none none reverse"
+            },
+            y: -20,
+            opacity: 0,
+            duration: 0.6,
+            ease: "power2.out"
+        });
+
+        gsap.from(".proj-slider-heading", {
+            scrollTrigger: {
+                trigger: "#projects-preview",
+                start: "top 85%",
+                toggleActions: "play none none reverse"
+            },
+            y: 40,
+            opacity: 0,
+            duration: 0.8,
+            delay: 0.1,
+            ease: "power3.out"
+        });
+
+        gsap.from(".proj-slider-viewport", {
+            scrollTrigger: {
+                trigger: "#projects-preview",
+                start: "top 80%",
+                toggleActions: "play none none reverse"
+            },
+            y: 50,
+            scale: 0.96,
+            opacity: 0,
+            duration: 0.8,
+            delay: 0.2,
+            ease: "power3.out"
+        });
+
+        gsap.from(".proj-dots", {
+            scrollTrigger: {
+                trigger: "#projects-preview",
+                start: "top 75%",
+                toggleActions: "play none none reverse"
+            },
+            y: 20,
+            opacity: 0,
+            duration: 0.6,
+            delay: 0.3,
+            ease: "power2.out"
+        });
+    }
+
+    /* Initialize and start auto-play */
+    goTo(0);
+    startAuto();
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initProjectsSlider);
+} else {
+    initProjectsSlider();
+}
 
 
 
