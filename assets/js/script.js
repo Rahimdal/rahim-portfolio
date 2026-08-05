@@ -1,3 +1,14 @@
+// Always start at the top of the page on load / reload
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Ensure hero is in view immediately after DOM is ready
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+
+
 document.addEventListener('DOMContentLoaded', () => {
     if (typeof gsap !== 'undefined') {
         const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
