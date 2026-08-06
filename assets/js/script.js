@@ -8,8 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Ensure hero is in view immediately after DOM is ready
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
 
-
-document.addEventListener('DOMContentLoaded', () => {
     if (typeof gsap !== 'undefined') {
         const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
@@ -651,18 +649,18 @@ window.initReviewsSlider = function () {
    PROJECTS SLIDER — Automatic right-to-left auto-slide (1.8s interval) with GSAP Text Animations
    ============================================================ */
 function initProjectsSlider() {
-    const track    = document.getElementById('projTrack');
-    const prevBtn  = document.getElementById('projPrev');
-    const nextBtn  = document.getElementById('projNext');
-    const dotsEl   = document.getElementById('projDots');
+    const track = document.getElementById('projTrack');
+    const prevBtn = document.getElementById('projPrev');
+    const nextBtn = document.getElementById('projNext');
+    const dotsEl = document.getElementById('projDots');
 
     if (!track || !prevBtn || !nextBtn) return;
 
-    const slides   = track.querySelectorAll('.proj-slide');
-    const dots     = dotsEl ? dotsEl.querySelectorAll('.proj-dot') : [];
-    const total    = slides.length;
-    let   current  = 0;
-    let   autoPlay = null;
+    const slides = track.querySelectorAll('.proj-slide');
+    const dots = dotsEl ? dotsEl.querySelectorAll('.proj-dot') : [];
+    const total = slides.length;
+    let current = 0;
+    let autoPlay = null;
 
     /* Move track to target slide with GSAP text & image animations */
     function goTo(index) {
@@ -678,10 +676,10 @@ function initProjectsSlider() {
             if (!activeSlide) return;
 
             const title = activeSlide.querySelector('.proj-slide-title');
-            const desc  = activeSlide.querySelector('.proj-slide-desc');
-            const num   = activeSlide.querySelector('.proj-slide-num');
-            const img   = activeSlide.querySelector('.proj-slide-img');
-            const cat   = activeSlide.querySelector('.proj-slide-cat');
+            const desc = activeSlide.querySelector('.proj-slide-desc');
+            const num = activeSlide.querySelector('.proj-slide-num');
+            const img = activeSlide.querySelector('.proj-slide-img');
+            const cat = activeSlide.querySelector('.proj-slide-cat');
 
             if (title) {
                 gsap.fromTo(title,
@@ -782,7 +780,7 @@ function initProjectsSlider() {
         const rect = section.getBoundingClientRect();
         if (rect.top > window.innerHeight || rect.bottom < 0) return;
         if (e.key === 'ArrowRight') { stopAuto(); goNext(); startAuto(); }
-        if (e.key === 'ArrowLeft')  { stopAuto(); goPrev(); startAuto(); }
+        if (e.key === 'ArrowLeft') { stopAuto(); goPrev(); startAuto(); }
     });
 
     /* GSAP ScrollTrigger Entrance Reveal for Header & Slider Section */
@@ -852,6 +850,9 @@ if (document.readyState === 'loading') {
 } else {
     initProjectsSlider();
 }
+
+
+
 
 
 
