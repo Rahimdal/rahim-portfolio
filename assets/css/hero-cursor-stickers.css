@@ -1,1 +1,41 @@
+/* ── Hero Cursor Stickers Animation (artemartemartem style) ── */
+.cursor-stickers-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 900;
+    overflow: hidden;
+}
+
+.cursor-sticker {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    will-change: transform, opacity;
+    width: 320px;
+    height: 210px;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 14px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35), 0 8px 25px rgba(0, 0, 0, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 1024px) {
+    .cursor-sticker {
+        width: 240px;
+        height: 160px;
+    }
+}
+
+@media (hover: none), (max-width: 768px) {
+    .cursor-stickers-container {
+        display: none !important;
+    }
+}
 
