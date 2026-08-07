@@ -1,1 +1,367 @@
+/* Skiper71 Image Reveal Section Styles - Fullscreen Responsive Fit */
+
+.proj-reveal-section {
+    position: relative;
+    background-color: #ffffff;
+    color: #111111;
+    width: 100%;
+    overflow: hidden;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+body.dark-mode .proj-reveal-section {
+    background-color: #050505;
+    color: #f4f1ea;
+}
+
+.proj-reveal-header {
+    padding: 80px 5% 40px 5%;
+    text-align: center;
+    background-color: #ffffff;
+    transition: background-color 0.4s ease;
+}
+
+body.dark-mode .proj-reveal-header {
+    background-color: #050505;
+}
+
+.proj-slider-tag {
+    display: inline-block;
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #ff5a1f;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.proj-slider-heading {
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 700;
+    color: #111111;
+    margin: 0;
+    transition: color 0.4s ease;
+}
+
+body.dark-mode .proj-slider-heading {
+    color: #ffffff;
+}
+
+.proj-slider-heading em {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 400;
+    color: #ff5a1f;
+}
+
+/* Reveal Wrap & Fullscreen Stage */
+.reveal-wrap {
+    position: relative;
+    width: 100%;
+}
+
+.stage {
+    position: relative;
+    height: 100vh;
+    height: 100dvh;
+    min-height: 520px;
+    width: 100%;
+    overflow: hidden;
+    background: #ffffff;
+    transition: background-color 0.4s ease;
+}
+
+body.dark-mode .stage {
+    background: #050505;
+}
+
+.frame {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    clip-path: inset(101% 0% 0% 0%);
+    will-change: clip-path, filter, transform;
+}
+
+.frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    filter: brightness(.75) saturate(1.05);
+    transform: scale(1.1);
+    will-change: filter, transform;
+}
+
+.frame::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.85) 100%);
+    pointer-events: none;
+}
+
+/* Captions */
+.cap {
+    position: absolute;
+    left: 5vw;
+    bottom: 8vh;
+    z-index: 5;
+    opacity: 0;
+    transform: translateY(24px);
+    max-width: 640px;
+    pointer-events: auto;
+}
+
+.cap .num {
+    font-size: 13px;
+    letter-spacing: .24em;
+    color: #ff5a1f;
+    margin-bottom: 12px;
+    display: block;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.cap h2 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: clamp(28px, 4.2vw, 54px);
+    color: #ffffff;
+    line-height: 1.1;
+    margin-bottom: 12px;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+}
+
+.cap p {
+    margin-top: 8px;
+    max-width: 48ch;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.92);
+    line-height: 1.6;
+    margin-bottom: 24px;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+}
+
+.cap-btn-wrap {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.proj-visit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 28px;
+    background: #ff5a1f;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 90, 31, 0.4);
+}
+
+.proj-visit-btn:hover {
+    background: #ffffff;
+    color: #000000;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.5);
+}
+
+/* Rail navigation */
+.rail {
+    position: absolute;
+    right: 4vw;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 6;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 16px;
+}
+
+.rail .tick {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    letter-spacing: .16em;
+    color: #ffffff;
+    opacity: 0.7;
+    transition: all .35s ease;
+    cursor: pointer;
+    font-weight: 500;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+}
+
+body.dark-mode .rail .tick {
+    color: #8a8680;
+    opacity: 1;
+}
+
+.rail .tick .dash {
+    width: 16px;
+    height: 2px;
+    background: rgba(255,255,255,0.7);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    transition: all .35s ease;
+}
+
+body.dark-mode .rail .tick .dash {
+    background: #8a8680;
+}
+
+.rail .tick.active {
+    color: #ffffff;
+    opacity: 1;
+    font-weight: 700;
+}
+
+body.dark-mode .rail .tick.active {
+    color: #ffffff;
+}
+
+.rail .tick.active .dash {
+    width: 34px;
+    background: #ff5a1f;
+    box-shadow: 0 0 10px rgba(255,90,31,0.6);
+}
+
+/* Reveal Footer & "View All Projects" Day / Night Toggle Button */
+.proj-reveal-footer {
+    padding: 60px 20px 80px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    transition: background-color 0.4s ease;
+}
+
+body.dark-mode .proj-reveal-footer {
+    background-color: #050505;
+}
+
+/* Day Mode (Light Theme): Dark button on light bg */
+.proj-view-more-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 36px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    background-color: #111111;
+    color: #ffffff;
+    border: 1px solid #111111;
+    overflow: hidden;
+    z-index: 1;
+    transition: color 0.35s ease, border-color 0.35s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+}
+
+.proj-view-more-btn svg {
+    transition: transform 0.3s ease;
+}
+
+.proj-view-more-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #ff5a1f;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: -1;
+}
+
+.proj-view-more-btn:hover {
+    color: #ffffff;
+    border-color: #ff5a1f;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 90, 31, 0.35);
+}
+
+.proj-view-more-btn:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.proj-view-more-btn:hover svg {
+    transform: translateX(4px);
+}
+
+/* Night Mode (Dark Theme): White button on dark bg */
+body.dark-mode .proj-view-more-btn {
+    background-color: #ffffff;
+    color: #050505;
+    border: 1px solid #ffffff;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.08);
+}
+
+body.dark-mode .proj-view-more-btn::before {
+    background-color: #ff5a1f;
+}
+
+body.dark-mode .proj-view-more-btn:hover {
+    color: #ffffff;
+    border-color: #ff5a1f;
+    box-shadow: 0 6px 20px rgba(255, 90, 31, 0.4);
+}
+
+body.dark-mode .proj-view-more-btn:hover::before {
+    transform: scaleX(1);
+}
+
+/* ---------- RESPONSIVE MOBILE & TABLET ---------- */
+@media (max-width: 768px) {
+    .rail { 
+        display: none; 
+    }
+    
+    .stage { 
+        height: 100vh;
+        height: 100dvh; 
+    }
+    
+    .cap { 
+        left: 4vw; 
+        right: 4vw; 
+        bottom: 5vh; 
+        max-width: 100%;
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.45);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    
+    .cap h2 {
+        font-size: clamp(22px, 6vw, 36px);
+        margin-bottom: 8px;
+    }
+    
+    .cap p {
+        font-size: 0.9rem;
+        margin-bottom: 16px;
+        line-height: 1.5;
+    }
+    
+    .proj-visit-btn {
+        padding: 10px 22px;
+        font-size: 0.88rem;
+    }
+}
 
