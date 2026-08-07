@@ -87,7 +87,8 @@ body.dark-mode .push-stage {
     position: absolute;
     width: clamp(320px, 75vw, 920px);
     max-width: 90%;
-    height: clamp(320px, 52vh, 480px); /* Fixed height — same for every card */
+    /* Taller range so content + button always fits on laptop */
+    height: clamp(340px, 56vh, 520px);
     border-radius: 24px;
     background: #ffffff;
     box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12), 0 5px 15px rgba(0, 0, 0, 0.05);
@@ -157,7 +158,7 @@ body.dark-mode .push-card {
     justify-content: center;
     width: 100%;
     flex: 1;
-    min-width: 0; /* Prevent flex overflow */
+    min-width: 0;
     overflow: hidden;
     box-sizing: border-box;
 }
@@ -165,38 +166,41 @@ body.dark-mode .push-card {
 @media (min-width: 860px) {
     .push-card-content {
         width: 42%;
-        padding: clamp(20px, 2.8vw, 36px) clamp(22px, 3vw, 36px);
+        /* Use flex-start + even padding so button is never cut at bottom */
+        justify-content: flex-start;
+        padding: clamp(18px, 3vh, 36px) clamp(22px, 3vw, 36px);
         height: 100%;
     }
 }
 
 .push-card-num {
-    font-size: clamp(0.68rem, 1vw, 0.85rem);
+    font-size: clamp(0.65rem, 0.9vw, 0.82rem);
     letter-spacing: 0.16em;
     color: #ff5a1f;
     font-weight: 600;
     text-transform: uppercase;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     display: block;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    flex-shrink: 0;
 }
 
 .push-card-content h3 {
     font-family: 'Outfit', sans-serif;
-    font-size: clamp(1.1rem, 2vw, 2rem);
+    font-size: clamp(1.05rem, 1.8vw, 1.85rem);
     font-weight: 700;
     color: #111111;
-    margin: 0 0 10px 0;
+    margin: 0 0 8px 0;
     line-height: 1.2;
     transition: color 0.4s ease;
-    /* Prevent heading from breaking layout */
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
+    flex-shrink: 0;
 }
 
 body.dark-mode .push-card-content h3 {
@@ -204,16 +208,17 @@ body.dark-mode .push-card-content h3 {
 }
 
 .push-card-content p {
-    font-size: clamp(0.8rem, 1.1vw, 0.95rem);
-    line-height: 1.6;
+    font-size: clamp(0.78rem, 1vw, 0.92rem);
+    line-height: 1.55;
     color: #555555;
-    margin: 0 0 20px 0;
+    margin: 0 0 16px 0;
     transition: color 0.4s ease;
-    /* Clamp to 4 lines on desktop so card never grows */
+    /* 3 lines max on desktop — leaves room for button */
     display: -webkit-box;
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    flex-shrink: 0;
 }
 
 body.dark-mode .push-card-content p {
