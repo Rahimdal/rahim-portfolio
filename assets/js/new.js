@@ -196,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
             src: 'assets/images/projects/Photography-mockup.webp', 
             title: 'Photography Portfolio',   
             note: 'A visually stunning custom-built photography portfolio designed to showcase high-quality images with smooth interactions.',
-            cat: 'HTML / CSS / JS',
+            cat: 'React / GSAP',
             url: 'https://photography-website-henna-delta.vercel.app/',
             rot: -4
         },
