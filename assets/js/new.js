@@ -204,16 +204,16 @@ document.addEventListener('DOMContentLoaded', () => {
             src: 'assets/images/projects/sarees.webp',  
             title: 'Traditional Saree Brand',  
             note: 'An elegant e-commerce experience celebrating authentic heritage sarees, rich craftsmanship, and seamless online ordering.',
-            cat: 'E-Commerce / Brand',
-            url: 'projects/',
+            cat: 'Custom Web / E-Commerce',
+            url: 'https://rahimdal.github.io/modern-sari/',
             rot: 3
         },
         { 
             src: 'assets/images/projects/Clothing.webp',  
             title: 'Clothing Store Website',  
             note: 'A modern, responsive online clothing storefront with custom layout enhancements, fast performance, and sleek product showcases.',
-            cat: 'Custom Web / E-Commerce',
-            url: 'projects/',
+            cat: 'E-Commerce / Brand',
+            url: 'https://www.social.ct.ws/',
             rot: -2
         }
     ];
