@@ -3188,3 +3188,99 @@ body.dark-mode .proj-view-more-btn:hover {
         padding: 4px 10px;
     }
 }
+
+/* Turning Ideas TextRoll Section Styles */
+
+.intro-section {
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 140px 24px;
+    text-align: center;
+    position: relative;
+    background-color: #ffffff;
+    transition: background-color 0.4s ease;
+    overflow: hidden;
+}
+
+body.dark-mode .intro-section {
+    background-color: #050505;
+}
+
+.intro-section .headline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 4px;
+}
+
+/* ---- TextRoll component ---- */
+.text-roll {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    cursor: pointer;
+    font-size: clamp(2.5rem, 9.5vw, 7rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    text-transform: uppercase;
+    max-width: 100%;
+    will-change: transform, opacity, filter;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+}
+
+.text-roll .roll-row {
+    display: flex;
+}
+
+.text-roll .roll-row .char {
+    display: inline-block;
+    white-space: pre;
+    will-change: transform;
+}
+
+.text-roll .roll-row.bottom {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.text-roll .roll-row.top .char {
+    color: #111111;
+    transition: color 0.3s ease;
+}
+
+body.dark-mode .text-roll .roll-row.top .char {
+    color: #ffffff;
+}
+
+.text-roll .roll-row.bottom .char {
+    color: #ff5a1f;
+}
+
+/* ---- Button at Bottom ---- */
+.textroll-btn-wrapper {
+    margin-top: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    will-change: transform, opacity, filter;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 640px) {
+    .intro-section {
+        padding: 90px 20px;
+        min-height: 75vh;
+    }
+    .textroll-btn-wrapper {
+        margin-top: 32px;
+    }
+}
+
