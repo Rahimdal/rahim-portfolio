@@ -169,14 +169,11 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-/* Skiper71 Image Reveal Script */
+/* Skiper71 3D Stacked Push Scroll Slider */
 document.addEventListener('DOMContentLoaded', () => {
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
 
     gsap.registerPlugin(ScrollTrigger);
-    if (typeof ScrollToPlugin !== 'undefined') {
-        gsap.registerPlugin(ScrollToPlugin);
-    }
 
     const data = [
         { 
@@ -184,149 +181,184 @@ document.addEventListener('DOMContentLoaded', () => {
             title: 'Gym Website',   
             note: 'A premium fitness website built with React, GSAP animations, scroll-triggered effects, and fully responsive layout.',
             cat: 'React / GSAP',
-            url: 'https://gym-tau-lemon.vercel.app/'
+            url: 'https://gym-tau-lemon.vercel.app/',
+            rot: -3
         },
         { 
             src: 'assets/images/projects/Interior-mockup.webp', 
             title: 'Interior Design Platform', 
             note: 'Immersive interior design site featuring Framer Motion, Lenis smooth scrolling, and elegant visual aesthetic.',
             cat: 'React / Motion',
-            url: 'https://interior-eight-jade.vercel.app/'
+            url: 'https://interior-eight-jade.vercel.app/',
+            rot: 4
         },
         { 
             src: 'assets/images/projects/Photography-mockup.webp', 
             title: 'Photography Portfolio',   
             note: 'A visually stunning custom-built photography portfolio designed to showcase high-quality images with smooth interactions.',
             cat: 'HTML / CSS / JS',
-            url: 'https://photography-website-henna-delta.vercel.app/'
+            url: 'https://photography-website-henna-delta.vercel.app/',
+            rot: -4
         },
         { 
             src: 'assets/images/projects/sarees.webp',  
             title: 'Traditional Saree Brand',  
             note: 'An elegant e-commerce experience celebrating authentic heritage sarees, rich craftsmanship, and seamless online ordering.',
             cat: 'E-Commerce / Brand',
-            url: 'projects/'
+            url: 'projects/',
+            rot: 3
         },
         { 
             src: 'assets/images/projects/Clothing.webp',  
             title: 'Clothing Store Website',  
             note: 'A modern, responsive online clothing storefront with custom layout enhancements, fast performance, and sleek product showcases.',
             cat: 'Custom Web / E-Commerce',
-            url: 'projects/'
+            url: 'projects/',
+            rot: -2
         }
     ];
 
-    const stage = document.getElementById('stage');
-    const rail  = document.getElementById('rail');
-    const wrap  = document.getElementById('revealWrap');
+    const pushStage = document.getElementById('pushStage');
+    const pushRail  = document.getElementById('pushRail');
+    const wrap      = document.getElementById('pushCardsWrap');
 
-    if (!stage || !rail || !wrap) return;
+    if (!pushStage || !wrap) return;
 
-    // Clear existing inner content except rail
-    stage.innerHTML = '';
-    rail.innerHTML = '';
+    pushStage.innerHTML = '';
+    if (pushRail) pushRail.innerHTML = '';
+
+    const cards = [];
+    const ticks = [];
+    const n = data.length;
 
     data.forEach((d, i) => {
-        const frame = document.createElement('div');
-        frame.className = 'frame';
-        frame.dataset.index = i;
+        const card = document.createElement('div');
+        card.className = 'push-card';
+        card.dataset.index = i;
         const isExternal = d.url.startsWith('http');
-        frame.innerHTML = `
-          <img src="${d.src}" alt="${d.title}" />
-          <div class="cap">
-            <span class="num">0${i+1} / 0${data.length} &bull; ${d.cat}</span>
-            <h2>${d.title}</h2>
-            <p>${d.note}</p>
-            <div class="cap-btn-wrap">
-                <a href="${d.url}" class="proj-visit-btn" ${isExternal ? 'target="_blank" rel="noopener noreferrer"' : ''}>
-                    <span>Visit Website</span>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="7" y1="17" x2="17" y2="7"></line>
-                        <polyline points="7 7 17 7 17 17"></polyline>
-                    </svg>
-                </a>
+        card.innerHTML = `
+          <div class="push-card-inner">
+            <div class="push-card-img-wrap">
+              <img src="${d.src}" alt="${d.title}" />
+            </div>
+            <div class="push-card-content">
+              <span class="push-card-num">0${i+1} / 0${n} &bull; ${d.cat}</span>
+              <h3>${d.title}</h3>
+              <p>${d.note}</p>
+              <a href="${d.url}" class="proj-visit-btn" ${isExternal ? 'target="_blank" rel="noopener noreferrer"' : ''}>
+                <span>Visit Website</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </a>
             </div>
           </div>`;
-        stage.appendChild(frame);
+        pushStage.appendChild(card);
+        cards.push(card);
 
-        const tick = document.createElement('div');
-        tick.className = 'tick' + (i === 0 ? ' active' : '');
-        tick.dataset.index = i;
-        tick.innerHTML = `<span class="dash"></span><span>0${i+1}</span>`;
-        rail.appendChild(tick);
-    });
-
-    stage.appendChild(rail);
-
-    const frames = gsap.utils.toArray('#stage .frame');
-    const ticks  = gsap.utils.toArray('#rail .tick');
-    const caps   = gsap.utils.toArray('#stage .cap');
-    const imgs   = gsap.utils.toArray('#stage .frame img');
-
-    const n = frames.length;
-
-    wrap.style.height = (n * 100) + 'vh';
-
-    ScrollTrigger.create({
-        trigger: wrap,
-        start: 'top top',
-        end: 'bottom bottom',
-        pin: stage,
-        pinSpacing: false,
-        scrub: 0.6,
-        onUpdate(self) {
-            const overall = self.progress;
-            const activeIdx = Math.min(n - 1, Math.floor(overall * n));
-            const activeLocal = gsap.utils.clamp(0, 1, (overall - activeIdx / n) / (1 / n));
-
-            frames.forEach((f, i) => {
-                const segStart = i / n;
-                const segEnd   = (i + 1) / n;
-                let local = (overall - segStart) / (segEnd - segStart);
-                local = gsap.utils.clamp(0, 1, local);
-
-                const clipTop = gsap.utils.interpolate(100, 0, local);
-                f.style.clipPath = `inset(${clipTop}% 0% 0% 0%)`;
-
-                const bright = i < activeIdx
-                    ? 0.55
-                    : gsap.utils.interpolate(0.45, 1, local);
-                const scale = gsap.utils.interpolate(1.12, 1.0, local);
-                imgs[i].style.filter = `brightness(${bright}) saturate(${gsap.utils.interpolate(0.85, 1, local)})`;
-                imgs[i].style.transform = `scale(${scale})`;
-
-                let capOpacity = 0;
-                let capY = 24;
-                if (i === activeIdx) {
-                    const capLocal = gsap.utils.clamp(0, 1, (activeLocal - 0.15) / 0.55);
-                    capOpacity = capLocal;
-                    capY = gsap.utils.interpolate(24, 0, capLocal);
-                } else if (i === activeIdx - 1) {
-                    const exitLocal = gsap.utils.clamp(0, 1, activeLocal * 4);
-                    capOpacity = 1 - exitLocal;
-                    capY = gsap.utils.interpolate(0, -16, exitLocal);
-                }
-                caps[i].style.opacity = capOpacity;
-                caps[i].style.transform = `translateY(${capY}px)`;
-
-                f.style.zIndex = i;
-            });
-
-            ticks.forEach((t, i) => t.classList.toggle('active', i === activeIdx));
+        if (pushRail) {
+            const tick = document.createElement('div');
+            tick.className = 'tick' + (i === 0 ? ' active' : '');
+            tick.dataset.index = i;
+            tick.innerHTML = `<span class="dash"></span><span>0${i+1}</span>`;
+            pushRail.appendChild(tick);
+            ticks.push(tick);
         }
     });
 
-    ticks.forEach((t, i) => {
-        t.style.cursor = 'pointer';
-        t.addEventListener('click', () => {
-            const target = wrap.offsetTop + (wrap.offsetHeight * (i / n)) + 10;
-            if (typeof gsap !== 'undefined' && gsap.plugins && gsap.plugins.scrollTo) {
-                gsap.to(window, { scrollTo: target, duration: 1, ease: 'power2.inOut' });
-            } else {
-                window.scrollTo({ top: target, behavior: 'smooth' });
-            }
-        });
-    });
-});
+    if (pushRail) pushStage.appendChild(pushRail);
 
+    // Set container height so scrolling pins the stage across all cards
+    wrap.style.height = (n * 110) + 'vh';
+
+    // Initial Stack Configuration: cards stack in 3D depth with slight rotations
+    const setStackState = () => {
+        cards.forEach((card, i) => {
+            const depth = i * 36; // translateY offset down stack
+            const zDepth = -i * 50; // translateZ back in depth
+            const scale = 1 - (i * 0.04); // scale down cards further back
+            const rot = data[i].rot || (i % 2 === 0 ? -3 : 3);
+            
+            gsap.set(card, {
+                y: depth,
+                z: zDepth,
+                rotation: rot,
+                scale: scale,
+                opacity: i > 3 ? 0 : (1 - i * 0.12),
+                zIndex: n - i
+            });
+        });
+    };
+
+    setStackState();
+
+    // GSAP ScrollTrigger to PUSH each card UP & AWAY one by one as user scrolls
+    const masterTl = gsap.timeline({
+        scrollTrigger: {
+            trigger: wrap,
+            start: 'top top',
+            end: 'bottom bottom',
+            pin: pushStage,
+            pinSpacing: true,
+            scrub: 0.7,
+            onUpdate: (self) => {
+                const activeIdx = Math.min(n - 1, Math.floor(self.progress * n));
+                if (ticks.length) {
+                    ticks.forEach((t, i) => t.classList.toggle('active', i === activeIdx));
+                }
+            }
+        }
+    });
+
+    // Create Push-up step for each card (0 to n-2)
+    for (let i = 0; i < n - 1; i++) {
+        const card = cards[i];
+        const nextCards = cards.slice(i + 1);
+
+        // Current card pushes UP, rotates, and fades away into upper depth
+        masterTl.to(card, {
+            y: -140 - (i * 20),
+            z: 100,
+            rotation: data[i].rot * 2.5,
+            scale: 1.08,
+            opacity: 0,
+            duration: 1,
+            ease: 'power2.inOut'
+        }, i);
+
+        // Next cards step forward in the stack to take center stage
+        nextCards.forEach((nc, idx) => {
+            const newPos = idx; // 0 is now front, 1 is next behind, etc.
+            const depth = newPos * 36;
+            const zDepth = -newPos * 50;
+            const scale = 1 - (newPos * 0.04);
+            const rot = data[i + 1 + idx].rot;
+
+            masterTl.to(nc, {
+                y: depth,
+                z: zDepth,
+                rotation: rot,
+                scale: scale,
+                opacity: newPos > 3 ? 0 : (1 - newPos * 0.12),
+                duration: 1,
+                ease: 'power2.inOut'
+            }, i);
+        });
+    }
+
+    // Rail tick click navigation
+    if (ticks.length) {
+        ticks.forEach((t, i) => {
+            t.addEventListener('click', () => {
+                const target = wrap.offsetTop + (wrap.offsetHeight * (i / n)) + 10;
+                if (typeof gsap !== 'undefined' && gsap.plugins && gsap.plugins.scrollTo) {
+                    gsap.to(window, { scrollTo: target, duration: 1, ease: 'power2.inOut' });
+                } else {
+                    window.scrollTo({ top: target, behavior: 'smooth' });
+                }
+            });
+        });
+    }
+});
 
